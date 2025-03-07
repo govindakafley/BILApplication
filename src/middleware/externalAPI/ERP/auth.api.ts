@@ -1,7 +1,7 @@
-import { BASEAPIUIRL } from "..";
+import { BASEERPAPIUIRL } from "..";
 
 
 export const authAPI = {
-    login: `${BASEAPIUIRL}/app-login`,
-    logout: `${BASEAPIUIRL}/app-logout`,
+    login: `${BASEERPAPIUIRL}/app-login`,
+    logout: `${BASEERPAPIUIRL}/app-logout`,
 }; 

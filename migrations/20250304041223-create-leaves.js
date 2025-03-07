@@ -10,6 +10,10 @@ module.exports = {
         primaryKey: true,
         allowNull: false,
       },
+      leave_applicant_id:{
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       employee_code: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -51,6 +55,10 @@ module.exports = {
         allowNull: false,
       },
       leave_reason: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      create_Update : {
         type: Sequelize.STRING,
         allowNull: false,
       },

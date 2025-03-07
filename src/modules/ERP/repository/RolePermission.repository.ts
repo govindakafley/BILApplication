@@ -2,7 +2,7 @@ import {
   loginAttributes,
   UserCreationAttributes,
 } from "../../../../interface/auth/LoginAttributes";
-import { RolePermissionCreationAttributes } from "../../../../interface/ERP/rolePermissionAttributes";
+import { RolePermissionCreationAttributes } from "../../../../interface/rolePermissionAttributes";
 import {
   axiosError,
   DataBaseError,

@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import RolePermissionHandler from "../handler/RolePermission.handler";
-import { RolePermissionCreationAttributes } from "../../../../interface/ERP/rolePermissionAttributes";
+import { RolePermissionCreationAttributes } from "../../../../interface/rolePermissionAttributes";
 
 class ERPRolePermissionController {
   async finalRolePermission(

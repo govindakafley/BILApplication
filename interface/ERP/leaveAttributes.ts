@@ -1,6 +1,7 @@
 import { Optional } from "sequelize";
 
 export interface  LeaveAttributes {
+    leave_applicant_id: string;
     employee_code: string;
     employee_id: string;
     email: string;
@@ -12,10 +13,15 @@ export interface  LeaveAttributes {
     no_of_leave_day: number;
     leave_total_days: number;
     leave_reason: string;
+    create_Update?: string;
+}
+export interface leaveApplicateAttributes {
+    leave_applicant_id: string;
 }
 export interface LeaveResponse {
     status: number;
     message: string;
+    data: Array<leaveApplicateAttributes>;
 }
 export interface LeaveTypeAttributes {
     id: number;
@@ -26,6 +32,11 @@ export interface LeaveTypeResponse {
     message: string;
     data: Array<LeaveTypeAttributes>;
 }
+export interface LeaveQueryResponse {
+    status: number;
+    message: string;
+    data: Array<leaveApplicateAttributes>;
+}
 
 
-export interface LeaveCreationAttributes extends Optional<LeaveAttributes,'employee_id'|'email'> {}
+export interface LeaveCreationAttributes extends Optional<LeaveAttributes,'employee_id'|'email'|'create_Update'> {}

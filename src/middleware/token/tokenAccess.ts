@@ -13,7 +13,8 @@ export const ACCESS_TOKEN = async (data: Partial<UserCreationAttributes>):Promis
 }
 
 export const refreshTokenHandler = async (req: Request, res: Response) => {
-  const refreshToken = req.cookies?.refreshToken;
+  const refreshToken = req.cookies?.refreshToken || ((typeof req.headers['accessToken'] === 'string' ? req.headers['accessToken'].split(' ')[1] : undefined) ?? (typeof req.headers['refreshToken'] === 'string' ? req.headers['refreshToken'].split(' ')[1] : undefined));
+
   if (!refreshToken) {
     return res.status(401).json({ message: 'Refresh token not provided' });
   }
@@ -45,11 +46,14 @@ export const refreshTokenHandler = async (req: Request, res: Response) => {
 
 export const VERIFY_TOKEN = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const token = req.cookies?.accessToken || req.cookies?.refreshToken;
-    if (!token) {
-      throw new NotFoundError('UnAuthenticated token');
-    }
+    let token = req.headers.authorization;
 
+    if (!token) {
+      throw new ForbiddenError('Access denied. No token provided');
+    }
+    if (token.startsWith("Bearer ")) {
+        token = token.slice(7);
+    }
     try {
       const decoded = jwt.verify(token, secretKey);
    
@@ -58,12 +62,12 @@ export const VERIFY_TOKEN = async (req: Request, res: Response, next: NextFuncti
     } catch (error) {
       if (error instanceof jwt.TokenExpiredError) {
         
-        const refreshToken = req.cookies?.refreshToken;
+        const refreshToken = token.split(' ')[1];
         if (!refreshToken) {
           throw new NotFoundError('Refresh token missing');
         }
 
-         refreshTokenHandler(req, res);
+        //  refreshTokenHandler(req, res);
       }
 
       throw error;

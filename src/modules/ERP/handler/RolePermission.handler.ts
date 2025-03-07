@@ -1,5 +1,5 @@
 import { loginAttributes } from "../../../../interface/auth/LoginAttributes";
-import { RolePermissionCreationAttributes } from "../../../../interface/ERP/rolePermissionAttributes";
+import { RolePermissionCreationAttributes } from "../../../../interface/rolePermissionAttributes";
 import { validateError } from "../../../middleware/errorHandler/error.handler";
 import { RolePermissionRepository } from "../repository/RolePermission.repository";
 import rolePermissionSchema from "../validator/rolePermission.validator";

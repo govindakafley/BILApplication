@@ -2,7 +2,8 @@ import { DataTypes, Model } from "sequelize";
 import { LeaveAttributes, LeaveCreationAttributes } from "../../../../interface/ERP/leaveAttributes";
 import sequelize from "../../../../database";
 
-class CreateLeave extends Model<LeaveCreationAttributes> implements LeaveAttributes {
+class Leave extends Model<LeaveCreationAttributes> implements LeaveAttributes {
+  public leave_applicant_id!: string;
   public employee_code!: string;
   public employee_id!: string;
   public email!: string;
@@ -14,10 +15,15 @@ class CreateLeave extends Model<LeaveCreationAttributes> implements LeaveAttribu
   public no_of_leave_day!: number;
   public leave_total_days!: number;
   public leave_reason!: string;
+  public create_Update!: string;
 }
 
-CreateLeave.init(
+Leave.init(
   {
+    leave_applicant_id: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     employee_code: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -62,13 +68,18 @@ CreateLeave.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    create_Update:{
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: false
+    }
   },
   {
     sequelize,
     tableName: "leaves", // Typically plural
-    modelName: "CreateLeave", // Match class name
+    modelName: "Leave", // Match class name
     timestamps: true,
   }
 );
 
-export default CreateLeave;
+export default Leave;

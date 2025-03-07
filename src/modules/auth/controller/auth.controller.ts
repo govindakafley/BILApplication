@@ -9,8 +9,8 @@ export class AuthController {
         try {
             const loginAttribute: loginAttributes = req.body;
             const response: TokenResponse | undefined = await this.authHandler.createLogin(loginAttribute);
-            res.cookie('accessToken', response?.accessToken,  { httpOnly: true, secure: true, sameSite: 'strict', maxAge: 3600000 });
-            res.cookie('refreshToken', response?.refreshToken,  { httpOnly: true, secure: true, sameSite: 'strict', maxAge: 3600000 });
+            // res.cookie('accessToken', response?.accessToken,  { httpOnly: true, secure: true, sameSite: 'strict', maxAge: 3600000 });
+            // res.cookie('refreshToken', response?.refreshToken,  { httpOnly: true, secure: true, sameSite: 'strict', maxAge: 3600000 });
             res.status(200).json({status: 200, message: 'Login successful', accessToken: response?.accessToken, refreshToken: response?.refreshToken });
         } catch (error: unknown) {
             if (error instanceof Error) {
