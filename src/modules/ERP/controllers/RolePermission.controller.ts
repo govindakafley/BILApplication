@@ -1,28 +1,18 @@
 import { NextFunction, Request, Response } from "express";
-import RolePermissionHandler from "../handler/RolePermission.handler";
 import { RolePermissionCreationAttributes } from "../../../../interface/rolePermissionAttributes";
+import { ApiResponse } from "../../../utility/responseHandler";
+import RolePermissionHandler from "../handler/leaves/external/RolePermission.handler";
 
 class ERPRolePermissionController {
-  async finalRolePermission(
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ): Promise<void> {
+  async finalRolePermission(req: Request, res: Response, next: NextFunction): Promise<any> {
     try {
-      const result: Partial<RolePermissionCreationAttributes> =
-        await RolePermissionHandler.finalRolePermission(req.body);
-      res.status(200).json({
-        status: 200,
-        message: "Successfully fetch Role and Permission",
-        data: result,
-      });
-    } catch (error) {
-      if (error instanceof Error) {
-        next(error);
-      } else {
-        next(new Error("An unexpected error occurred"));
-      }
+      const response = await RolePermissionHandler.finalRolePermission(req.body);
+        return ApiResponse.success(res, "Successfully fetched Role and Permission", 200,  response);
+      
+    } catch (error: any) {
+      return ApiResponse.error(res, error instanceof Error ? error.message : "An unexpected error occurred", error.statusCode);
     }
   }
 }
+
 export default new ERPRolePermissionController();

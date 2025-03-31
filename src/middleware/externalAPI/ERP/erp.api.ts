@@ -5,6 +5,6 @@ export const ERPAPI = {
     createLeave: `${BASEERPAPIUIRL}/create-leave`,
     updateLeave: `${BASEERPAPIUIRL}/update-leave`,
     leaveTypes: `${BASEERPAPIUIRL}/leave-type`,
-    leaveQuery: `${BASEERPAPIUIRL}/leave-query`,
+    leaveQueryApproval: `${BASEERPAPIUIRL}/leave-applicant`,
     leaveApproval: `${BASEERPAPIUIRL}/leave-approval`,
 }; 

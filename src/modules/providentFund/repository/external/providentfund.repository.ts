@@ -1,5 +1,5 @@
 import { RefundAttributes, refundResponse } from "../../../../../interface/providentfund/providentfundAttributes";
-import { axiosError, DataBaseError, UnauthorizedError } from "../../../../middleware/errorHandler/error.handler";
+import errorHandler from "../../../../middleware/errorHandler/commonErrorHandler";
 import { PPFAPI } from "../../../../middleware/externalAPI/providentFund/pf.api";
 import apiClient from "../../../../utility/api";
 
@@ -12,15 +12,8 @@ class ProvidentFundRepository {
            );
            return response;
         }catch(error){
-           if(error instanceof DataBaseError){
-                throw new DataBaseError(`${error}`)
-           }
-           else if(error instanceof axiosError){
-            throw new axiosError(`{error}`)
-           }
-           if(error instanceof UnauthorizedError){
-            throw new UnauthorizedError(`{error}`)
-           }
+          throw errorHandler(error);  // Consolidated error handling
+
         }
     }
 }

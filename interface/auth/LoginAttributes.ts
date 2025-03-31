@@ -6,7 +6,7 @@ export interface loginAttributes {
   
   export interface loginCreationAttributes {
     email: string;
-    employee_code: string;
+    employee_code?: string;
     name: string;
     employee_id: string;
    } 

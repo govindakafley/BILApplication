@@ -1,9 +1,9 @@
-import { ValidationError } from "sequelize";
 import { loginCreationAttributes } from "../../../../../interface/auth/LoginAttributes";
 import { RolePermissionCreationResponse } from "../../../../../interface/rolePermissionAttributes";
-import { NotFoundError, UnauthorizedError, validateError } from "../../../../middleware/errorHandler/error.handler";
-import rolePermissionSchema from "../../validator/validateRoleAndPermission";
+import { UnauthorizedError } from "../../../../middleware/errorHandler/error.handler";
 import ProvidentFundExternalQueryRepository from "../../repository/external/providentfund.query.repository";
+import errorHandler from "../../../../middleware/errorHandler/commonErrorHandler";
+import rolePermissionSchema from "../../validator/validateRoleAndPermission";
 
 class ProvidentFundExternalQueryHandler extends ProvidentFundExternalQueryRepository {
      async findAllRoleAndPermissionHandler(
@@ -23,10 +23,8 @@ class ProvidentFundExternalQueryHandler extends ProvidentFundExternalQueryReposi
                 message: "Role and permission data fetched successfully",
             };    
         } catch (error) {
-            if (error instanceof ValidationError) {
-                throw new validateError(`Validation failed: ${error.message}`);
-            }
-            throw new NotFoundError(`${error}`);
+            throw errorHandler(error);  // Consolidated error handling
+
         }
     }
 }

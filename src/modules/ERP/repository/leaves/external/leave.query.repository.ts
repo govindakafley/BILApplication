@@ -1,36 +1,24 @@
 import { UserCreationAttributes } from "../../../../../../interface/auth/LoginAttributes";
 import { LeaveQueryResponse } from "../../../../../../interface/ERP/leaveAttributes";
-import {
-  axiosError,
-  DataBaseError,
-  NotFoundError,
-} from "../../../../../middleware/errorHandler/error.handler";
+import  errorHandler  from "../../../../../middleware/errorHandler/commonErrorHandler";
+
 import { ERPAPI } from "../../../../../middleware/externalAPI/ERP/erp.api";
 import apiClient from "../../../../../utility/api";
-export class LeaveQueryRepository {
-  static async fetchAllLeaves(UserAttributes: UserCreationAttributes): Promise<LeaveQueryResponse> {
+export class LeaveQueryRepository{
+
+  static async fetchAllApprovalLeaves(
+    UserAttributes: Partial<UserCreationAttributes>
+  ): Promise<LeaveQueryResponse> {
     try {
-      const response = await apiClient.post<{ data: LeaveQueryResponse }>(
-        ERPAPI.leaveQuery,
+      const response = await apiClient.post(
+        ERPAPI.leaveQueryApproval,
         UserAttributes
       );
-      const data = response.data;
-      const leave: LeaveQueryResponse = data?.data || data;
-      return leave;
+      const data: LeaveQueryResponse = response.data as LeaveQueryResponse;
+      return data
+      
     } catch (error) {
-      if (error instanceof axiosError) {
-        const errorMessage =
-          error?.response?.message || error?.message || "Unknown error";
-        throw new axiosError(errorMessage);
-      } else if (error instanceof DataBaseError) {
-        throw new DataBaseError(
-          "Database error occurred while processing login"
-        );
-      } else if (error instanceof NotFoundError) {
-        throw new NotFoundError("User not found");
-      } else {
-        throw new Error("An unexpected error occurred");
-      }
+      throw errorHandler(error);
     }
   }
 }

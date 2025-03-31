@@ -6,7 +6,10 @@ import providentfundrouter from './protectedroutes/providentfund.router';
 
 import { authController } from "../utility/constant/constant";
 import { VERIFY_TOKEN } from "../middleware/token/tokenAccess";
+import { refreshTokenHandler } from "../middleware/token/tokenAccess";
 router.post('/login', authController.createLogin.bind(authController));
+router.post('/refreshToken', authController.refreshToken.bind(authController));
+
 router.use('/erp',VERIFY_TOKEN,erprouter);
 router.use('/ppf',VERIFY_TOKEN,providentfundrouter);
 

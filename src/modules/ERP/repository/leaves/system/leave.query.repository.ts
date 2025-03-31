@@ -1,6 +1,7 @@
 import { Op } from "sequelize"; // Import Sequelize operators
 import { LeaveAttributes } from "../../../../../../interface/ERP/leaveAttributes";
 import Leave from "../../../model/createLeave.model";
+import errorHandler from "../../../../../middleware/errorHandler/commonErrorHandler";
 
 class LeavesQueryRepository {
   static async findAllLeaves(
@@ -28,7 +29,7 @@ class LeavesQueryRepository {
       });
       return response;
     } catch (error) {
-      throw new Error(`Error retrieving leaves: ${error}`);
+      throw errorHandler(error);  // Consolidated error handling
     }
   }
 }

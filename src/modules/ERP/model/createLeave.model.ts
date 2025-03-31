@@ -10,8 +10,8 @@ class Leave extends Model<LeaveCreationAttributes> implements LeaveAttributes {
   public leave_type!: number;
   public leave_from_date!: Date;
   public leave_to_date!: Date;
-  public leave_half_day!: string[];
-  public leave_day_shift!: string[];
+  public leave_half_day!: string;
+  public leave_day_shift!: string;
   public no_of_leave_day!: number;
   public leave_total_days!: number;
   public leave_reason!: string;
@@ -49,11 +49,11 @@ Leave.init(
       allowNull: false,
     },
     leave_half_day: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
+      type: DataTypes.STRING,
       allowNull: false,
     },
     leave_day_shift: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
+      type: DataTypes.STRING,
       allowNull: false,
     },
     no_of_leave_day: {

@@ -31,7 +31,7 @@ export class AppError extends Error {
         super(message, 401);
         }
     }
-    export class validateError extends AppError {
+    export class ValidationError extends AppError {
         constructor(message: string) {
         super(message, 400);
         }
@@ -41,53 +41,26 @@ export class AppError extends Error {
         super(message, 403);
         }
     }
-    export class ConflictError extends AppError {
-        constructor(message: string) {
-        super(message, 409);
-        }
-    }
+
     export class InternalServerError extends AppError {
         constructor(message: string) {
         super(message, 500);
         }
     }
-    export class NotImplemented extends AppError {
-        constructor(message: string) {
-        super(message, 501);
-        }
-    }
-    export class BadGateway extends AppError {
-        constructor(message: string) {
-        super(message, 502);
-        }
-    }
+
     export class ServiceUnavailable extends AppError {
         constructor(message: string) {
         super(message, 503);
         }
     }
-    export class GatewayTimeout extends AppError {
-        constructor(message: string) {
-        super(message, 504);
-        }
-    }
-    export class axiosError extends AppError {
+   
+    export class AxiosError extends AppError {
         [x: string]: any;
         constructor(message: string) {
         super(message, 500);
         }
     }
-    export class roleError extends AppError {
-        constructor(message: string) {
-        super(message, 500);
-        }
-    }
-    export class permissionError extends AppError {
-        constructor(message: string) {
-        super(message, 500);
-        }
-    }
-    
+
  
 
 
