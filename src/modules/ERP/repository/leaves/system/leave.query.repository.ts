@@ -5,8 +5,8 @@ import errorHandler from "../../../../../middleware/errorHandler/commonErrorHand
 
 class LeavesQueryRepository {
   static async findAllLeaves(
-    searchQuery?: string,
     applicant_id?: string,
+    searchQuery?: string,
     limit: number = 10 
   ): Promise<LeaveAttributes[]> {
     const whereCondition: any = {

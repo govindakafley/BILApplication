@@ -79,7 +79,14 @@ export class LeaveExternalRepository {
   
   static async approvedLeave (leave_applicant_id: string,leaveApprovedAttributes: LeaveApproveAttributes): Promise<LeaveResponse> {
     try{
-       const response = await apiClient.post( `${ERPAPI.leaveApproval}/${leave_applicant_id}`,leaveApprovedAttributes)
+      const approveAttributes = {
+        leave_applicant_id: leave_applicant_id,
+        employee_code: leaveApprovedAttributes.employee_code,
+        leave_type: leaveApprovedAttributes.leave_type,
+        leave_status: leaveApprovedAttributes.leave_status,
+        approval_remarks: leaveApprovedAttributes.approval_remarks,
+      }
+       const response = await apiClient.post( `${ERPAPI.leaveApproval}/${leave_applicant_id}`,approveAttributes)
        const data = response.data;
        const approvedLeave: LeaveResponse  = data as LeaveResponse
        return approvedLeave;

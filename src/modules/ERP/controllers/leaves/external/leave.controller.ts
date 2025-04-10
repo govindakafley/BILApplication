@@ -27,7 +27,10 @@ class LeaveController {
       }
       return ApiResponse.error(res, "Failed to Apply Leave", 400);
     } catch (error: any) {
-      return ApiResponse.error(res, error instanceof Error ? error.message : "An unexpected error occurred", error.statusCode);
+      if (error instanceof Error) {
+        return ApiResponse.error(res, error.message, (error as any).statusCode || 500);
+      }
+      return ApiResponse.error(res, "An unexpected error occurred", 500);
 
     }
   }
@@ -52,7 +55,10 @@ class LeaveController {
       }
       return ApiResponse.error(res, "Failed to Update Leave", 400);
     } catch (error) {
-      next(new Error(`${error}`));
+      if (error instanceof Error) {
+        return ApiResponse.error(res, error.message, (error as any).statusCode || 500);
+      }
+      return ApiResponse.error(res, "An unexpected error occurred", 500);
     }
   }
   async approvedLeave(
@@ -63,7 +69,7 @@ class LeaveController {
     try {
       const approvedAttributes: LeaveApproveAttributes = req.body;
       const response = await LeaveHandler.approvedLeave(
-        approvedAttributes.employee_code as string,
+        approvedAttributes.leave_applicant_id as string,
         approvedAttributes
       );
       if (response) {
@@ -78,7 +84,11 @@ class LeaveController {
       }
       return ApiResponse.error(res, "Failed to Update Leave", 400);
     } catch (error) {
-      next(new Error(`${error}`));
+      if (error instanceof Error) {
+        return ApiResponse.error(res, error.message, (error as any).statusCode || 500);
+      }
+      return ApiResponse.error(res, "An unexpected error occurred", 500);
+
     }
   }
 }

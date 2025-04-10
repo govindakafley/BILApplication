@@ -49,7 +49,7 @@ export class LeaveHandler
     try {
       await leaveSchema.validate(leaveAttributes, { abortEarly: true });
       const response = await LeaveExternalRepository.updateLeave(
-        leaveAttributes.leave_applicant_id as string,
+        leaveAttributes.leave_applicant_id,
         leaveAttributes
       );
       if (response.status === 201) {
@@ -59,7 +59,7 @@ export class LeaveHandler
         };
         const createLeave: LeaveResponse =
           await LeaveSystemRepository.updateLeave(
-            leaveAttributes.leave_applicant_id as string,
+            leaveAttributes.leave_applicant_id,
             leaveAttribute
           );
         return {
@@ -94,18 +94,24 @@ export class LeaveHandler
           ...findLeaveAttributes,
           create_Update: "Approved",
         };
-        {
-          findLeaveAttributes
-            ? await LeaveSystemRepository.approvedLeaves(
-                leave_applicant_id,
-                approveLeaveAttributes
-              )
-            : await LeaveSystemRepository.execute(leaveApprovedAttributes);
+        if (findLeaveAttributes) {
+          await LeaveSystemRepository.approvedLeaves(leave_applicant_id, {
+            ...approveLeaveAttributes,
+            employee_code: approveLeaveAttributes.employee_code,
+            leave_type: approveLeaveAttributes.leave_type,
+            leave_status: approveLeaveAttributes.leave_status,
+            approval_remarks: approveLeaveAttributes.approval_remarks,
+          } as LeaveApproveAttributes);
+        } else if (approveLeaveAttributes.leave_applicant_id) {
+          await LeaveSystemRepository.execute(
+            approveLeaveAttributes as LeaveCreationAttributes
+          );
+        } else {
+          throw new Error("leave_applicant_id is required for execution");
         }
-      }
-      return response;
+      }return response;
     } catch (error) {
-      throw errorHandler(error); // Consolidated error handling
+      throw errorHandler(error); 
     }
   }
 }
