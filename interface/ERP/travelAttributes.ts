@@ -1,4 +1,8 @@
+import { Optional } from "sequelize"
+
 export type TravelAttributes = {
+    id?: number,
+    travel_id?: string,
     employee_code: string,
     travel_type: number,
     travel_purpose: number,
@@ -12,10 +16,20 @@ export type TravelAttributes = {
     travel_from_place: string,
     travel_to_place: string,
     travel_description: string,
+    create_Update: string
 }
-
+export interface EmployeeCodeAttributes {
+    employee_code: string
+}
 export type TravelResponse = {
     status: number,
     message: string,
-    data: string
+    data: any
 }
+
+export type TravelVerifyAttributes = {
+    employee_code: string
+    travel_status : number
+    travel_remarks: string
+}
+export interface TravelCreationAttributes extends Optional<TravelAttributes,'id'| 'travel_id'> {}

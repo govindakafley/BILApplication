@@ -68,8 +68,9 @@ class LeaveController {
   ): Promise<any> {
     try {
       const approvedAttributes: LeaveApproveAttributes = req.body;
+
       const response = await LeaveHandler.approvedLeave(
-        approvedAttributes.leave_applicant_id as string,
+         approvedAttributes.leave_id as string,
         approvedAttributes
       );
       if (response) {

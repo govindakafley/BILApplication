@@ -80,7 +80,7 @@ export class LeaveExternalRepository {
   static async approvedLeave (leave_applicant_id: string,leaveApprovedAttributes: LeaveApproveAttributes): Promise<LeaveResponse> {
     try{
       const approveAttributes = {
-        leave_applicant_id: leave_applicant_id,
+        leave_id: leave_applicant_id,
         employee_code: leaveApprovedAttributes.employee_code,
         leave_type: leaveApprovedAttributes.leave_type,
         leave_status: leaveApprovedAttributes.leave_status,

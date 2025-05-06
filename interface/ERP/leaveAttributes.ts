@@ -1,7 +1,7 @@
 import { Optional } from "sequelize";
 
 export interface  LeaveAttributesArray {
-    leave_applicant_id?: string;
+    leave_id?: string;
     employee_code: string;
     employee_id: string;
     email: string;
@@ -16,8 +16,9 @@ export interface  LeaveAttributesArray {
     create_Update?: string;
 }
 export interface  LeaveAttributes {
-    leave_applicant_id: string;
+    leave_id: string;
     employee_code: string;
+    leave_emp_code?: string;
     employee_id: string;
     email: string;
     leave_type: number;
@@ -31,7 +32,7 @@ export interface  LeaveAttributes {
     create_Update?: string;
 }
 export interface leaveApplicateAttributes {
-    leave_applicant_id: string;
+    leave_id?: string;
 }
 export interface LeaveResponse {
     status?: number;
@@ -64,4 +65,4 @@ export interface returnResponse {
     message: string;
 }
 
-export interface LeaveCreationAttributes extends Optional<LeaveAttributes,'employee_id'|'email'|'create_Update'> {}
+export interface LeaveCreationAttributes extends Optional<LeaveAttributes,'employee_id'|'email'|'create_Update' | 'leave_id'> {}

@@ -3,79 +3,93 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('leaves', {
+    await queryInterface.createTable('training', {
       id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true,
         allowNull: false,
       },
-      leave_id:{
-        type: Sequelize.BIGINT,
+      training_id: {
+        type: Sequelize.STRING,
         allowNull: false,
       },
+
       employee_code: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      employee_id: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      email: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      leave_type: {
+      training_type: {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      leave_from_date: {
-        type: Sequelize.DATE,
-        allowNull: false,
-      },
-      leave_to_date: {
-        type: Sequelize.DATE,
-        allowNull: false,
-      },
-      leave_half_day: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      leave_day_shift: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      no_of_leave_day: {
+      training_category: {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      leave_total_days: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-      },
-      leave_reason: {
+      training_course: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      create_Update : {
+      training_institute_name: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      training_country: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      training_expense_applicable: {
+        type: Sequelize.ENUM("Yes", "No"),
+        allowNull: false,
+      },
+      training_fund: {
+        // Works for PostgreSQL
+        type: Sequelize.ARRAY(Sequelize.INTEGER),
+        allowNull: false,
+      },
+      training_from_date: {
+        type: Sequelize.DATEONLY,
+        allowNull: false,
+      },
+      training_end_date: {
+        type: Sequelize.DATEONLY,
+        allowNull: false,
+      },
+      training_duration: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      training_need_advance: {
+        type: Sequelize.ENUM("Y"),
+        allowNull: true,
+      },
+      training_advance_amount: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      training_description: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      create_update:{
         type: Sequelize.STRING,
         allowNull: false,
       },
       createdAt: {
         type: Sequelize.DATE,
         allowNull: false,
-        defaultValue: Sequelize.literal('CURRENT_DATE'),
+        defaultValue: Sequelize.fn('NOW'),
       },
       updatedAt: {
         type: Sequelize.DATE,
         allowNull: false,
-        defaultValue: Sequelize.literal('CURRENT_DATE'),
+        defaultValue: Sequelize.fn('NOW'),
       },
     });
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('leaves');
-  },
+    await queryInterface.dropTable('training');
+  }
 };

@@ -1,4 +1,5 @@
 import {
+  leaveApplicateAttributes,
   LeaveApproveAttributes,
   LeaveCreationAttributes,
   LeaveQueryResponse,
@@ -21,16 +22,15 @@ export class LeaveSystemRepository extends LeavesQueryRepository {
       return {
         status: 201,
         message: "Leave created successfully",
-        data: createdLeave,
-      };
+        data: createdLeave.toJSON() as leaveApplicateAttributes};
     } catch (error) {
       throw errorHandler(error);  // Consolidated error handling
     }
   }
-static async leaveSystemUpdate(  leave_applicant_id: string, leaveAttributes: LeaveCreationAttributes): Promise<any> {
+static async leaveSystemUpdate(  leave_id: string, leaveAttributes: LeaveCreationAttributes): Promise<any> {
   try{
      const response = await Leave.update(leaveAttributes,{
-      where: {leave_applicant_id: leave_applicant_id }
+      where: {leave_id: leave_id }
      })
      return response;
   }catch(error){
@@ -39,17 +39,17 @@ static async leaveSystemUpdate(  leave_applicant_id: string, leaveAttributes: Le
 
   }
   static async updateLeave(
-    leave_applicant_id: string,
+    leave_id: string,
     leaveAttributes: LeaveCreationAttributes
   ): Promise<returnResponse> {
     try {
-      const existingLeaves = await LeavesQueryRepository.findAllLeaves("",leave_applicant_id, 10);
+      const existingLeaves = await LeavesQueryRepository.findAllLeaves("",leave_id, 10);
       
       if (existingLeaves.length === 0) {
         return LeaveSystemRepository.execute(leaveAttributes);
       }
 
-      await LeaveSystemRepository.leaveSystemUpdate(leave_applicant_id, leaveAttributes);
+      await LeaveSystemRepository.leaveSystemUpdate(leave_id, leaveAttributes);
       
       return {
         status: 201,
@@ -59,9 +59,9 @@ static async leaveSystemUpdate(  leave_applicant_id: string, leaveAttributes: Le
       throw errorHandler(error);  // Consolidated error handling
     }
   }
-  static async approvedLeaves(leave_applicant_id:string, leaveApprovedAttributes: LeaveApproveAttributes): Promise<returnResponse> {
+  static async approvedLeaves(leave_id:string, leaveApprovedAttributes: LeaveApproveAttributes): Promise<returnResponse> {
     try{
-       await Leave.update(leaveApprovedAttributes,{ where: {leave_applicant_id} })
+       await Leave.update(leaveApprovedAttributes,{ where: {leave_id} })
       return {
         status: 201,
         message: "Leave updated successfully",        
@@ -70,9 +70,5 @@ static async leaveSystemUpdate(  leave_applicant_id: string, leaveAttributes: Le
       throw errorHandler(error);  // Consolidated error handling
 
     }
-     return {
-      status: 201,
-      message: "Leave updated successfully",
-     }
   }
 }

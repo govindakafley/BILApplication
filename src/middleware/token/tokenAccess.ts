@@ -46,6 +46,7 @@ export const VERIFY_TOKEN = async (req: Request, res: Response, next: NextFuncti
     }
     try {
       const decoded = jwt.verify(token.replace(/"/g, ''), secretKey);
+      
       (req as any).user = decoded;
       return next(); 
     } catch (error) {

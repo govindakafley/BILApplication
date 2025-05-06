@@ -3,7 +3,7 @@ import { LeaveAttributes, LeaveCreationAttributes } from "../../../../interface/
 import sequelize from "../../../../database";
 
 class Leave extends Model<LeaveCreationAttributes> implements LeaveAttributes {
-  public leave_applicant_id!: string;
+  public leave_id!: string;
   public employee_code!: string;
   public employee_id!: string;
   public email!: string;
@@ -20,7 +20,7 @@ class Leave extends Model<LeaveCreationAttributes> implements LeaveAttributes {
 
 Leave.init(
   {
-    leave_applicant_id: {
+    leave_id: {
       type: DataTypes.STRING,
       allowNull: false,
     },

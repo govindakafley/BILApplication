@@ -1,16 +1,15 @@
 'use strict';
 
-/** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('leaves', {
+  up: async (queryInterface, Sequelize) => {
+    await queryInterface.createTable('travel', {
       id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true,
         allowNull: false,
       },
-      leave_id:{
+      travel_id: {
         type: Sequelize.BIGINT,
         allowNull: false,
       },
@@ -18,64 +17,73 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      employee_id: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      email: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      leave_type: {
+      travel_type: {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      leave_from_date: {
+      travel_purpose: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      travel_expense_applicable: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      travel_funding: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      travel_mode: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      travel_from_date: {
         type: Sequelize.DATE,
         allowNull: false,
       },
-      leave_to_date: {
+      travel_to_date: {
         type: Sequelize.DATE,
         allowNull: false,
       },
-      leave_half_day: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      leave_day_shift: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      no_of_leave_day: {
+      travel_duration: {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      leave_total_days: {
+      travel_advance_amount: {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      leave_reason: {
+      travel_from_place: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      create_Update : {
+      travel_to_place: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      travel_description: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      create_Update:{
         type: Sequelize.STRING,
         allowNull: false,
       },
       createdAt: {
-        type: Sequelize.DATE,
         allowNull: false,
-        defaultValue: Sequelize.literal('CURRENT_DATE'),
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn('NOW'),
       },
       updatedAt: {
-        type: Sequelize.DATE,
         allowNull: false,
-        defaultValue: Sequelize.literal('CURRENT_DATE'),
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn('NOW'),
       },
+
     });
   },
 
-  async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('leaves');
-  },
+  down: async (queryInterface, Sequelize) => {
+    await queryInterface.dropTable('travel');
+  }
 };

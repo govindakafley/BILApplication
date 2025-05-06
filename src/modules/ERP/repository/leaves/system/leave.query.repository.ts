@@ -10,7 +10,7 @@ class LeavesQueryRepository {
     limit: number = 10 
   ): Promise<LeaveAttributes[]> {
     const whereCondition: any = {
-      leave_applicant_id: applicant_id, 
+      leave_id: applicant_id, 
     };
 
     if (searchQuery) {

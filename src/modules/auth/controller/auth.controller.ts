@@ -8,7 +8,6 @@ export class AuthController {
    
     constructor(private readonly authHandler: AuthHandler) {}
 
-    // Login method
     async createLogin(req: Request, res: Response, next: NextFunction): Promise<any> {
         try {
             const loginAttribute: loginAttributes = req.body;

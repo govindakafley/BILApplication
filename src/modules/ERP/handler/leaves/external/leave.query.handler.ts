@@ -12,11 +12,11 @@ class LeaveQueryHandler implements LeaveQueryRepository, LeaveExternalRepository
   }
    async fetchAllApprovalLeaves(UserAttributes: Partial<UserCreationAttributes>) : Promise<LeaveQueryResponse>{
     try{
-      const employee_code = JSON.stringify(UserAttributes.employee_code);
+      const cacheKey = 'fetchAllApprovalLeaves'+UserAttributes.employee_code
+      const employee_code = JSON.stringify(cacheKey);
       if(this.cacheManager.has(employee_code)){
-        return this.cacheManager.get<LeaveQueryResponse>(employee_code)!;
+        return this.cacheManager.get(employee_code)!;
       }
-
         const leaveQuery:LeaveQueryResponse  = await LeaveQueryRepository.fetchAllApprovalLeaves(UserAttributes);
 
         this.cacheManager.set(employee_code, leaveQuery);
