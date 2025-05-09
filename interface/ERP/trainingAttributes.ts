@@ -28,4 +28,10 @@ export type TrainingAttributes = {
     message: string
     data: string
   }
+
+  export interface TrainingVerification extends TrainingAttributes  {
+    employee_code: string;
+    training_status: number
+    approval_remarks: string
+  }
   

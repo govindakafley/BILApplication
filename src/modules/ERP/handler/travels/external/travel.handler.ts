@@ -11,6 +11,7 @@ import {
   TravelValidatorSchema
 } from "../../../validator/travelValidator";
 import { CacheHandler } from "../../../../../middleware/cache.handler";
+import { CacheManager } from "../../../../../utility/cacheManager";
 
 class TravelExternalHandler {
   async createTravel(travelAttributes: TravelAttributes): Promise<TravelResponse> {
@@ -18,14 +19,13 @@ class TravelExternalHandler {
       await TravelValidatorSchema.validate(travelAttributes, { abortEarly: true });
 
       const response = await TravelExternalRepository.create(travelAttributes);
-      if (response.status !== 201) return response;
+      if (!response) return response;
 
       const travelData: TravelAttributes = {
         ...travelAttributes,
-        travel_id: response.data as unknown as string,
+        travel_id: response as unknown as string,
         create_Update: "create",
       };
-
       const travel = await TravelSystemRepository.createTravel(travelData);
 
       return {
@@ -44,13 +44,28 @@ class TravelExternalHandler {
       const data = await CacheHandler.getOrSetCache(cacheKey, () =>
         TravelExternalRepository.fetchTravelTypes()
       );
-      console.log(data)  
       return {
         status: 200,
         message: "Travel types fetched successfully",
         data,
       };
     } catch (error) {
+      throw errorHandler(error);
+    }
+  }
+  async fetchTravelByHead(employee_code: EmployeeCodeAttributes): Promise<TravelResponse>{
+    try{
+      await EmployeeCodeValidatorSchema.validate(employee_code);
+      const cacheKey = `fetchTravelByHead_${employee_code}`;
+      const data = await CacheHandler.getOrSetCache(cacheKey, ()=> 
+        TravelExternalRepository.fetchTravelByHead(employee_code)
+      );
+      return {
+        status: 200,
+        message: "Travel applicant Head/ADM fetched successfully",
+        data,
+      };
+    }catch(error) {
       throw errorHandler(error);
     }
   }
@@ -63,7 +78,6 @@ class TravelExternalHandler {
       const data = await CacheHandler.getOrSetCache(cacheKey, () =>
         TravelExternalRepository.fetchTravelApplicant(employee_code)
       );
-
       return {
         status: 200,
         message: "Travel applicant fetched successfully",

@@ -36,6 +36,12 @@ class TravelExternalController {
       "Travel verified successfully"
     );
   }
+  async fetchTravelByHead(req: Request, res: Response, next: NextFunction): Promise<void> {
+    return await ResponseHandler.handleRequest(res, ()=> 
+      TravelExternalHandler.fetchTravelByHead(req.body),
+    "Travel applicant fetched successfully"
+    )
+  }
 }
 
 export default new TravelExternalController();

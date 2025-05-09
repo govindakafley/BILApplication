@@ -6,6 +6,7 @@ import  {hasPermission}  from "../../utility/chequePermission/checkPermission";
 import TravelExternalController from "../../modules/ERP/controllers/travels/external/travel.controller";
 import TrainingQueryExternalRepository from "../../modules/ERP/controllers/training/training.query.controller"
 import TrainingExternalController from "../../modules/ERP/controllers/training/training.controller"
+import SalaryAdvanceExternalController from "../../modules/ERP/controllers/salaryadvance/external/salary.external.controller";
 const router = Router();
 
 
@@ -19,8 +20,9 @@ router.post('/approvedLeave',LeaveController.approvedLeave.bind(LeaveController)
 // travel
 router.post('/createtravel', TravelExternalController.createTravel.bind(TravelExternalController))
 router.get('/travelTypesQuery', TravelExternalController.fetchTravelTypes.bind(TravelExternalController))
-router.post('/travellist', TravelExternalController.fetchTravelApplicant.bind(TravelExternalController))
+router.post('/travelList', TravelExternalController.fetchTravelApplicant.bind(TravelExternalController))
 router.post('/travelVerification', TravelExternalController.travelVerification.bind(TravelExternalController))
+router.post('/travelApprovalList',TravelExternalController.fetchTravelByHead.bind(TravelExternalController))
 
 //  training
 router.get('/trainingType', TrainingQueryExternalRepository.trainingType.bind(TrainingQueryExternalRepository))
@@ -28,4 +30,7 @@ router.post('/trainingCategory', TrainingQueryExternalRepository.trainingCategor
 router.get('/fetchTrainingCountryFunding', TrainingQueryExternalRepository.fetchTrainingCountryFunding.bind(TrainingQueryExternalRepository))
 router.post('/createTraining', TrainingExternalController.createTraining.bind(TrainingExternalController))
 router.post('/traininglist',TrainingQueryExternalRepository.fetchAllTrainingList.bind(TrainingQueryExternalRepository))
+
+// advance salary
+router.post('/fetchAdvancedetail', SalaryAdvanceExternalController.fetchSalaryAdvancedetail.bind(SalaryAdvanceExternalController))
 export default router;

@@ -17,6 +17,10 @@ class TravelExternalRepository {
     }
     static async TravelVerification(travelAttributes: TravelVerifyAttributes, travel_id?: string): Promise<TravelResponse> {
         return await RequestHandler.post<TravelResponse,TravelVerifyAttributes >(`${ERPAPI.travelVerification}/${travel_id}`, travelAttributes)
-    }    
+    }  
+    static async fetchTravelByHead(employee_code: EmployeeCodeAttributes): Promise<TravelResponse> {
+        return await RequestHandler.post<TravelResponse, EmployeeCodeAttributes>(ERPAPI.travelQueryVerify, employee_code)
+
+    }
 }
 export default TravelExternalRepository;

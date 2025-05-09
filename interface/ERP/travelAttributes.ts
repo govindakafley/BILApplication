@@ -18,9 +18,11 @@ export type TravelAttributes = {
     travel_description: string,
     create_Update: string
 }
+
 export interface EmployeeCodeAttributes {
     employee_code: string
 }
+
 export type TravelResponse = {
     status: number,
     message: string,

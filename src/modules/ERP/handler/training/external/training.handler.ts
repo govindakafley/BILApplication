@@ -1,6 +1,7 @@
 import {
   TrainingAttributes,
-  TrainingResponse
+  TrainingResponse,
+  TrainingVerification
 } from "../../../../../../interface/ERP/trainingAttributes";
 import errorHandler from "../../../../../middleware/errorHandler/commonErrorHandler";
 import TrainingExternalRepository from "../../../repository/training/external/training.repository";
@@ -28,6 +29,23 @@ class TrainingExternalHandler {
         message: "Training created successfully",
         data: externalRes.data
       };
+    } catch (error) {
+      throw errorHandler(error);
+    }
+  }
+  async TrainingVerification(trainingVerification: TrainingVerification):Promise<TrainingResponse> {
+    try{
+       const response = await TrainingExternalRepository.trainingVerification(trainingVerification)
+       if (response.status == 200) {
+        const trainingData = {
+          ...trainingVerification,
+          travel_id: trainingVerification.training_id,
+          created_update: 'Verified'
+        }
+          const data = await TrainingSystemRepository.CreateTraining(trainingData)
+          return response
+       }
+       return response
     } catch (error) {
       throw errorHandler(error);
     }

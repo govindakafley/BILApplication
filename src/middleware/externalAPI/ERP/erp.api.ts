@@ -25,4 +25,8 @@ export const ERPAPI = {
   createTraining: `${BASEERPAPIUIRL}/create-training`,
   trainingList: `${BASEERPAPIUIRL}/training-list`,
   trainingReporting: `${BASEERPAPIUIRL}/training-reporting`,
+  trainingVerification:  `${BASEERPAPIUIRL}/training-verification`,
+
+  // salary advance
+  salaryAdvanceDetail:  `${BASEERPAPIUIRL}/salary-apply-details`,
 };
