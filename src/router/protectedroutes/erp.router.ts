@@ -33,4 +33,5 @@ router.post('/traininglist',TrainingQueryExternalRepository.fetchAllTrainingList
 
 // advance salary
 router.post('/fetchAdvancedetail', SalaryAdvanceExternalController.fetchSalaryAdvancedetail.bind(SalaryAdvanceExternalController))
+router.post('/applySalaryAdvance',SalaryAdvanceExternalController.applySalaryAdvance.bind(SalaryAdvanceExternalController))
 export default router;

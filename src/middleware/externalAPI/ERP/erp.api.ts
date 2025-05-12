@@ -29,4 +29,5 @@ export const ERPAPI = {
 
   // salary advance
   salaryAdvanceDetail:  `${BASEERPAPIUIRL}/salary-apply-details`,
+  applySalaryAdvance: `${BASEERPAPIUIRL}/salary-advance`,
 };

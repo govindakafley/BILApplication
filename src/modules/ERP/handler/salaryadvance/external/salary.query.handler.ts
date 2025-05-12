@@ -4,7 +4,7 @@ import errorHandler from "../../../../../middleware/errorHandler/commonErrorHand
 import SalaryAdvanceExternalRepository from "../../../repository/salaryadvance/external/salary.external.repository";
 import { EmployeeCodeValidatorSchema } from "../../../validator/travelValidator";
 
-class SalaryAdvanceExternalHandler {
+class SalaryAdvanceQueryExternalHandler {
     async fetchAdvanceSalarydetail(employee_code:EmployeeCodeAttributes): Promise<SalaryResponseAttributes> {
         try{
              await EmployeeCodeValidatorSchema.validate(employee_code);
@@ -16,5 +16,5 @@ class SalaryAdvanceExternalHandler {
     }
 }
 
-export default new SalaryAdvanceExternalHandler()
+export default new SalaryAdvanceQueryExternalHandler()
 
