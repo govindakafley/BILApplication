@@ -27,10 +27,11 @@ import { RequestHandler } from "../../../../../middleware/request.handler";
     }
   
     static async fetchAllTraining(employeeCode: EmployeeCodeAttributes): Promise<TrainingAttributes> {
-      return RequestHandler.post<TrainingAttributes, EmployeeCodeAttributes>(
+      const response = RequestHandler.post<TrainingAttributes, EmployeeCodeAttributes>(
         ERPAPI.trainingList,
         employeeCode
       );
+      return response
     }
   }
   

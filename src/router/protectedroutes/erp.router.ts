@@ -30,8 +30,13 @@ router.post('/trainingCategory', TrainingQueryExternalRepository.trainingCategor
 router.get('/fetchTrainingCountryFunding', TrainingQueryExternalRepository.fetchTrainingCountryFunding.bind(TrainingQueryExternalRepository))
 router.post('/createTraining', TrainingExternalController.createTraining.bind(TrainingExternalController))
 router.post('/traininglist',TrainingQueryExternalRepository.fetchAllTrainingList.bind(TrainingQueryExternalRepository))
+router.post('/trainingVerification', TrainingExternalController.TrainingVerification.bind(TrainingExternalController))
+router.post('/fetchTrainingByCode', TrainingQueryExternalRepository.fetchTrainingByEmployeeCode.bind(TrainingQueryExternalRepository))
 
 // advance salary
 router.post('/fetchAdvancedetail', SalaryAdvanceExternalController.fetchSalaryAdvancedetail.bind(SalaryAdvanceExternalController))
 router.post('/applySalaryAdvance',SalaryAdvanceExternalController.applySalaryAdvance.bind(SalaryAdvanceExternalController))
+router.post('/fetchSalaryAdvance', SalaryAdvanceExternalController.fetchSalaryAdvance.bind(SalaryAdvanceExternalController)) //   by particular role head/ admin/ceo
+
+
 export default router;

@@ -7,10 +7,8 @@ import { ApiResponse } from "../responseHandler";
 export const hasPermission = (requiredPermission: string) => 
   async (req: Request, res: Response, next: NextFunction):Promise<any> => {
     try {
-      // Check permissions using RolePermissionHandler
       const  permission  = await RolePermissionHandler.finalRolePermission(req.body);
 
-      // If the required permission is included, proceed to the next middleware
       if (permission.permission && Array.isArray(permission.permission) && permission.permission.includes(requiredPermission)) {
         return next();
       }

@@ -16,7 +16,7 @@ export type TrainingAttributes = {
     training_fund: number[]; // Array of fund IDs
     training_from_date: string; // ISO date string e.g., "2025-05-03"
     training_end_date: string;   // ISO date string e.g., "2025-05-10"
-    training_duration: number; // in days
+    training_duration: string; // in days
     training_need_advance: "Y" | null; // Can be 'Y' or null
     training_advance_amount: string; // Assuming it's a string, could be converted to number if preferred
     training_description: string;
@@ -26,7 +26,7 @@ export type TrainingAttributes = {
   export type TrainingResponse = {
     status: number,
     message: string
-    data: string
+    data: string | Array<TrainingAttributes>
   }
 
   export interface TrainingVerification extends TrainingAttributes  {

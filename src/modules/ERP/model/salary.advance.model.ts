@@ -53,7 +53,7 @@ SalaryAdvance.init({
 }, {
     sequelize,
     modelName: "SalaryAdvance",
-    tableName: "salary_advances",
+    tableName: "salary_advance",
     timestamps: true,
 });
 

@@ -1,3 +1,4 @@
+import { Optional, Options } from "sequelize";
 import {
     TrainingAttributes,
     TrainingResponse,
@@ -21,15 +22,11 @@ import {
         payload
       );
     }
-    
+
     static trainingVerification(payload: TrainingVerification): Promise<TrainingResponse> {
-        const trainingData = {
-            ...payload,
-            training_id: payload.training_id
-        }
         return RequestHandler.post<TrainingResponse, TrainingVerification>(
-            `${ERPAPI.trainingVerification}/${trainingData.training_id}`, 
-            trainingData 
+            `${ERPAPI.trainingVerification}/${payload.training_id}`, 
+            payload
         );
     }
 

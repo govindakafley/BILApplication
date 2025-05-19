@@ -57,7 +57,7 @@ module.exports = {
         allowNull: false,
       },
       training_duration: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: false,
       },
       training_need_advance: {

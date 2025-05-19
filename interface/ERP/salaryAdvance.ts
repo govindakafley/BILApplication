@@ -9,6 +9,13 @@ export type SalaryAdvanceAttributes = {
     monthly_installment_amt: number
     salary_advance_amt?: number
     salary_purpose?: string
+    create_update?: string;
+    approval_remarks?: string;
+    sa_status?: number
+    sa_id?: string
+    sa_request_advance_amt?: number
+    sa_monthly_installment?: number
+
 }
 
 export interface SalaryResponseAttributes {

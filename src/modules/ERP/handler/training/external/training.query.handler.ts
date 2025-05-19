@@ -1,5 +1,6 @@
 import {
   TrainingAttributes,
+  TrainingResponse,
   TrainingTypes
 } from "../../../../../../interface/ERP/trainingAttributes";
 import { EmployeeCodeAttributes } from "../../../../../../interface/ERP/travelAttributes";
@@ -9,7 +10,7 @@ import { NotFoundError } from "../../../../../middleware/errorHandler/error.hand
 import { CacheManager } from "../../../../../utility/cacheManager";
 import TrainingQueryExternalRepository from "../../../repository/training/external/training.query.repository";
 import { EmployeeCodeValidatorSchema } from "../../../validator/travelValidator";
-
+import fetchTrainingByEmployeeCode from "../../../repository/training/external/training.repository"
 class TrainingQueryExternalHandler {
 
   async trainingType(): Promise<TrainingTypes> {
@@ -51,6 +52,14 @@ class TrainingQueryExternalHandler {
     try {
       await EmployeeCodeValidatorSchema.validate(employeeCode);
       return await TrainingQueryExternalRepository.fetchAllTraining(employeeCode);
+    } catch (error) {
+      throw errorHandler(error);
+    }
+  }
+  async fetchTrainingByEmployeeCode(employeeCode: EmployeeCodeAttributes): Promise<TrainingResponse>{
+    try{
+        await EmployeeCodeValidatorSchema.validate(employeeCode);
+        return await fetchTrainingByEmployeeCode.fetchTrainingByEmployeeCode(employeeCode)
     } catch (error) {
       throw errorHandler(error);
     }

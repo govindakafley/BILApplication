@@ -22,6 +22,12 @@ class TrainingExternalController {
   async fetchAllTrainingList(req: Request, res: Response, next: NextFunction):Promise<any> {
     return await ResponseHandler.handleRequest(res, ()=> TrainingQueryExternalHandler.fetchAllTrainingList(req.body), "Training Data fetched successfully", 200)
   }
+    async fetchTrainingByEmployeeCode(req: Request, res: Response, next: NextFunction): Promise<any> {
+    return await ResponseHandler.handleRequest(res, ()=> 
+      TrainingQueryExternalHandler.fetchTrainingByEmployeeCode(req.body),
+    'Training Data fetched successfully', 200
+    )
+  }
 }
 
 export default new TrainingExternalController();

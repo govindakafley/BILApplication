@@ -14,6 +14,15 @@ class SalaryAdvanceQueryExternalHandler {
             throw errorHandler(error);
         }
     }
+    async fetchSalaryAdvance(employee_code: EmployeeCodeAttributes): Promise<SalaryResponseAttributes> {
+        try {
+            await EmployeeCodeValidatorSchema.validate(employee_code);
+            const response: SalaryResponseAttributes = await SalaryAdvanceExternalRepository.fetchSalaryAdvance(employee_code);
+            return response;
+        } catch (error) {
+            throw errorHandler(error);
+        }
+    }
 }
 
 export default new SalaryAdvanceQueryExternalHandler()

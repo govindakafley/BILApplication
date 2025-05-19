@@ -65,19 +65,9 @@ export const trainingValidatorSchema = yup.object({
     .nullable()
     .oneOf(["Y", null], "Training need advance must be 'Y' or null"),
 
-  training_advance_amount: yup
-    .string()
-    .strict(true)
-    .when("training_need_advance", {
-      is: "Y",
-      then: schema => schema.required("Advance amount is required when advance is needed"),
-      otherwise: schema => schema.notRequired(),
-    }),
-
   training_description: yup
     .string()
     .strict(true)
     .required("Training description is required")
 })
-.strict()
-.noUnknown(true, "Unknown fields are not allowed");
+

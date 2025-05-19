@@ -17,7 +17,7 @@ class Training extends Model<TrainingAttributes, TrainingCreationAttributes> imp
   public training_fund!: number[];
   public training_from_date!: string;
   public training_end_date!: string;
-  public training_duration!: number;
+  public training_duration!: string;
   public training_need_advance!: "Y" | null;
   public training_advance_amount!: string;
   public training_description!: string;
@@ -81,7 +81,7 @@ Training.init(
       allowNull: false,
     },
     training_duration: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     training_need_advance: {
@@ -103,7 +103,7 @@ Training.init(
   },
   {
     sequelize,
-    tableName: "trainings",
+    tableName: "training",
     modelName: "Training",
   }
 );

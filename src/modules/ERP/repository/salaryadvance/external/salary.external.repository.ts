@@ -17,6 +17,18 @@ class SalaryAdvanceExternalRepository {
             payload
         )
     }
+    static async fetchSalaryAdvance(payload: EmployeeCodeAttributes): Promise<SalaryResponseAttributes> {
+        return RequestHandler.post<SalaryResponseAttributes, EmployeeCodeAttributes>(
+            ERPAPI.listSalaryAdvance,
+            payload
+        );
+    }
+    static  async approveSalaryAdvance(payload: SalaryAdvanceAttributes): Promise<SalaryResponseAttributes> {
+        return RequestHandler.post<SalaryResponseAttributes, SalaryAdvanceAttributes>(
+            ERPAPI.salaryAdvanceApproval,
+            payload
+        );
+    }
 }
 
 export default SalaryAdvanceExternalRepository;

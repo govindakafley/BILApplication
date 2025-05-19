@@ -98,7 +98,6 @@ class TravelExternalHandler {
         travel_status: travelAttributes.travel_type,
         travel_remarks: travelAttributes.travel_description,
       };
-
       const response = await TravelExternalRepository.TravelVerification(
         verificationPayload,
         verificationPayload.travel_id
