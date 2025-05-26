@@ -1,3 +1,4 @@
+import e from "express";
 import {
   SalaryAdvanceAttributes,
   SalaryResponseAttributes,
@@ -29,21 +30,24 @@ class SalaryAdvanceExternalHandler extends SalaryAdvanceExternalRepository {
           data: [],
         };
       }
-      const parsedResponse = JSON.stringify(externalResponse);
-      const salaryAdvanceData = {
-        ...payload,
-        advance_id: JSON.parse(parsedResponse),
-        create_update: "create",
-      };
+       
+      // const parsedResponse = JSON.stringify(externalResponse);
+      // const salaryAdvanceData = {
+      //   ...payload,
+      //   advance_id: JSON.parse(parsedResponse),
+      //   create_update: "create",
+      // };
 
-      const systemData = await SalaryAdvanceSystemRepository.applySalaryAdvance(
-        salaryAdvanceData
-      );
+      // const systemData = await SalaryAdvanceSystemRepository.applySalaryAdvance(
+      //   salaryAdvanceData
+      // );
 
       return {
         status: 201,
         message: "Applied the salary advance successfully.",
-        data: systemData ? [systemData] : [],
+        data: Array.isArray(externalResponse)
+          ? externalResponse as SalaryAdvanceAttributes[]
+          : [externalResponse as unknown as SalaryAdvanceAttributes],
       };
     } catch (error) {
       throw errorHandler(error);
@@ -73,35 +77,41 @@ class SalaryAdvanceExternalHandler extends SalaryAdvanceExternalRepository {
           data: [],
         };
       }
-      if (!payload.advance_id) {
-        throw new Error(
-          "advance_id is required to fetch salary advance by id."
-        );
-      }
-      const checkSalaryAdvance =
-        await SalaryAdvanceSystemRepository.fetchsalaryAdvanceById(
-          payload.advance_id
-        );
-      const responseData = {
-        ...payload,
-        create_update: "Approved",
-      }
-      if (checkSalaryAdvance) {
-        await SalaryAdvanceSystemRepository.updateSalaryAdvance(responseData);
-        return {
-          status: 200,
-          message: "Updated the salary advance successfully.",
-          data: [checkSalaryAdvance],
-        };
-      } else {
-        const systemData =
-          await SalaryAdvanceSystemRepository.applySalaryAdvance(responseData);
-        return {
-          status: 201,
-          message: "Created the salary advance successfully.",
-          data: systemData ? [systemData] : [],
-        };
-      }
+      return {
+        status: 200,
+        message: "Approved the salary advance successfully.",
+        data: response && (response as any).employee_code
+          ? [response as unknown as SalaryAdvanceAttributes]
+          : Array.isArray(response)
+            ? (response as SalaryAdvanceAttributes[])
+            : [],
+      };
+
+      // const checkSalaryAdvance =
+      //   await SalaryAdvanceSystemRepository.fetchsalaryAdvanceById(
+      //     payload.advance_id
+      //   );
+        
+      // const responseData = {
+      //   ...payload,
+      //   create_update: "Approved",
+      // }
+      // if (checkSalaryAdvance) {
+      //   await SalaryAdvanceSystemRepository.updateSalaryAdvance(responseData);
+      //   return {
+      //     status: 200,
+      //     message: "Updated the salary advance successfully.",
+      //     data: [checkSalaryAdvance],
+      //   };
+      // } else {
+      //   const systemData =
+      //     await SalaryAdvanceSystemRepository.applySalaryAdvance(responseData);
+      //   return {
+      //     status: 201,
+      //     message: "Created the salary advance successfully.",
+      //     data: systemData ? [systemData] : [],
+      //   };
+      // }
     } catch (error) {
       throw errorHandler(error);
     }

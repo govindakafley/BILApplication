@@ -5,10 +5,11 @@ import { RequestHandler } from "../../../../../middleware/request.handler";
 
 class SalaryAdvanceExternalRepository {
     static async fetchSalaryAdvancedetail(payload: EmployeeCodeAttributes):Promise<SalaryResponseAttributes>{
-       return RequestHandler.post<SalaryResponseAttributes, EmployeeCodeAttributes>(
+       const response = RequestHandler.post<SalaryResponseAttributes, EmployeeCodeAttributes>(
         ERPAPI.salaryAdvanceDetail,
         payload
        )
+       return response;
     }
 
     static async applySalaryAdvance(payload:SalaryAdvanceAttributes ): Promise<SalaryResponseAttributes>{

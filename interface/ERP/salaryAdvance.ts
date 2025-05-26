@@ -8,14 +8,14 @@ export type SalaryAdvanceAttributes = {
     applicable_advance_amt: number
     monthly_installment_amt: number
     salary_advance_amt?: number
-    salary_purpose?: string
+    salary_purpose?: string;
+    take_home_pay?: string;
     create_update?: string;
     approval_remarks?: string;
     sa_status?: number
     sa_id?: string
     sa_request_advance_amt?: number
     sa_monthly_installment?: number
-
 }
 
 export interface SalaryResponseAttributes {

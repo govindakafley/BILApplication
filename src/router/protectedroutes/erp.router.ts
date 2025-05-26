@@ -9,7 +9,6 @@ import TrainingExternalController from "../../modules/ERP/controllers/training/t
 import SalaryAdvanceExternalController from "../../modules/ERP/controllers/salaryadvance/external/salary.external.controller";
 const router = Router();
 
-
 router.post("/permission",hasPermission("approve-leave"),RolePermissionController.finalRolePermission.bind(RolePermissionController));
 router.post("/createleave", LeaveController.createLeave.bind(LeaveController));
 router.get("/leaveTypesQuery", LeaveQueryController.fetchLeaveTypes.bind(LeaveQueryController));

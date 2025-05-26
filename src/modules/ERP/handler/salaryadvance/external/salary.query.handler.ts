@@ -9,6 +9,7 @@ class SalaryAdvanceQueryExternalHandler {
         try{
              await EmployeeCodeValidatorSchema.validate(employee_code);
              const response: SalaryResponseAttributes  = await SalaryAdvanceExternalRepository.fetchSalaryAdvancedetail(employee_code);
+             console.log('response', response);
              return response;
         }catch(error){
             throw errorHandler(error);

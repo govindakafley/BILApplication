@@ -24,19 +24,19 @@ export class LeaveHandler
       const response = await LeaveExternalRepository.createLeave(
         leaveAttributes
       );
-      if (response.status === 201) {
-        const leaveAttribute: LeaveCreationAttributes = {
-          ...leaveAttributes,
-          leave_id: response.data as unknown as string,
-          create_Update: "create",
-        };
-        const createLeave = await LeaveSystemRepository.execute(leaveAttribute);
-        return {
-          status: 201,
-          message: "Leave created successfully",
-          data: createLeave.data,
-        };
-      }
+      // if (response.status === 201) {
+      //   const leaveAttribute: LeaveCreationAttributes = {
+      //     ...leaveAttributes,
+      //     leave_id: response.data as unknown as string,
+      //     create_Update: "create",
+      //   };
+      //   const createLeave = await LeaveSystemRepository.execute(leaveAttribute);
+      //   return {
+      //     status: 201,
+      //     message: "Leave created successfully",
+      //     data: createLeave.data,
+      //   };
+      // }
       return response;
     } catch (error) {
       throw errorHandler(error); // Consolidated error handling
@@ -52,22 +52,22 @@ export class LeaveHandler
         leaveAttributes?.leave_id ?? (() => { throw new Error("leave_id is required"); })(),
         leaveAttributes
       );
-      if (response.status === 201) {
-        const leaveAttribute: LeaveCreationAttributes = {
-          ...leaveAttributes,
-          create_Update: "update",
-        };
-        const createLeave: LeaveResponse =
-          await LeaveSystemRepository.updateLeave(
-            leaveAttributes.leave_id,
-            leaveAttribute
-          );
-        return {
-          status: 201,
-          message: "Leave updated successfully",
-          data: createLeave.data,
-        };
-      }
+      // if (response.status === 201) {
+      //   const leaveAttribute: LeaveCreationAttributes = {
+      //     ...leaveAttributes,
+      //     create_Update: "update",
+      //   };
+      //   const createLeave: LeaveResponse =
+      //     await LeaveSystemRepository.updateLeave(
+      //       leaveAttributes.leave_id,
+      //       leaveAttribute
+      //     );
+      //   return {
+      //     status: 201,
+      //     message: "Leave updated successfully",
+      //     data: createLeave.data,
+      //   };
+      // }
 
       return response;
     } catch (error) {
@@ -86,30 +86,31 @@ export class LeaveHandler
         leave_id,
         leaveApprovedAttributes
       );
-      if (response.status === 200) {
-        const findLeaveAttributes = await LeavesQueryRepository.findAllLeaves(
-          leave_id
-        );
-        const approveLeaveAttributes: Partial<LeaveApproveAttributes> = {
-          ...findLeaveAttributes,
-          create_Update: "Approved",
-        };
-        if (findLeaveAttributes) {
-          await LeaveSystemRepository.approvedLeaves(leave_id, {
-            ...approveLeaveAttributes,
-            employee_code: approveLeaveAttributes.employee_code,
-            leave_type: approveLeaveAttributes.leave_type,
-            leave_status: approveLeaveAttributes.leave_status,
-            approval_remarks: approveLeaveAttributes.approval_remarks,
-          } as LeaveApproveAttributes);
-        } else if (approveLeaveAttributes.leave_id) {
-          await LeaveSystemRepository.execute(
-            approveLeaveAttributes as LeaveCreationAttributes
-          );
-        } else {
-          throw new Error("leave_id is required for execution");
-        }
-      }return response;
+      // if (response.status === 200) {
+      //   const findLeaveAttributes = await LeavesQueryRepository.findAllLeaves(
+      //     leave_id
+      //   );
+      //   const approveLeaveAttributes: Partial<LeaveApproveAttributes> = {
+      //     ...findLeaveAttributes,
+      //     create_Update: "Approved",
+      //   };
+      //   if (findLeaveAttributes) {
+      //     await LeaveSystemRepository.approvedLeaves(leave_id, {
+      //       ...approveLeaveAttributes,
+      //       employee_code: approveLeaveAttributes.employee_code,
+      //       leave_type: approveLeaveAttributes.leave_type,
+      //       leave_status: approveLeaveAttributes.leave_status,
+      //       approval_remarks: approveLeaveAttributes.approval_remarks,
+      //     } as LeaveApproveAttributes);
+      //   } else if (approveLeaveAttributes.leave_id) {
+      //     await LeaveSystemRepository.execute(
+      //       approveLeaveAttributes as LeaveCreationAttributes
+      //     );
+      //   } else {
+      //     throw new Error("leave_id is required for execution");
+      //   }
+      // }
+      return response;
     } catch (error) {
       throw errorHandler(error); 
     }

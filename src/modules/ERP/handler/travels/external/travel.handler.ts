@@ -21,17 +21,17 @@ class TravelExternalHandler {
       const response = await TravelExternalRepository.create(travelAttributes);
       if (!response) return response;
 
-      const travelData: TravelAttributes = {
-        ...travelAttributes,
-        travel_id: response as unknown as string,
-        create_Update: "create",
-      };
-      const travel = await TravelSystemRepository.createTravel(travelData);
+      // const travelData: TravelAttributes = {
+      //   ...travelAttributes,
+      //   travel_id: response as unknown as string,
+      //   create_Update: "create",
+      // };
+      // const travel = await TravelSystemRepository.createTravel(travelData);
 
       return {
         status: 201,
         message: "Travel created successfully",
-        data: travel,
+        data: response,
       };
     } catch (error) {
       throw errorHandler(error);
@@ -103,20 +103,20 @@ class TravelExternalHandler {
         verificationPayload.travel_id
       );
 
-      if (response.status !== 200) return response;
+      if (!response) return response;
 
-      const updatedTravel: TravelAttributes = {
-        ...travelAttributes,
-        travel_id: travelAttributes.travel_id,
-        create_Update: "Approved",
-      };
+      // const updatedTravel: TravelAttributes = {
+      //   ...travelAttributes,
+      //   travel_id: travelAttributes.travel_id,
+      //   create_Update: "Approved",
+      // };
 
-      const travel = await TravelSystemRepository.updateTravel(updatedTravel.travel_id, updatedTravel);
+      // const travel = await TravelSystemRepository.updateTravel(updatedTravel.travel_id, updatedTravel);
 
       return {
         status: 200,
         message: "Travel updated successfully",
-        data: travel,
+        data: response,
       };
     } catch (error) {
       throw errorHandler(error);
