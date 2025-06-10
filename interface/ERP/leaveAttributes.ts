@@ -64,5 +64,30 @@ export interface returnResponse {
     status: number;
     message: string;
 }
+export interface LeaveEncashmentBase {
+  employee_code: string;
+  employee_id: string;
+  employee_name: string;
+  total_leave_balance: number;
+}
+
+export interface LeaveEncashmentWithPay extends LeaveEncashmentBase {
+  basic_pay: string;
+  financial_year: string;
+  casual_leave_balance: string;
+  earned_leave_balance: string;
+}
+
+export interface LeaveEncashmentWithEncash extends LeaveEncashmentBase {
+  encash_amount: string;
+  encash_year: string;
+  encash_cl_balance: string;
+  encash_el_balance: string;
+}
+export interface LeaveEncashmentResponse {
+    status: number;
+    message: string;
+    data: Array<LeaveEncashmentWithPay>;
+}
 
 export interface LeaveCreationAttributes extends Optional<LeaveAttributes,'employee_id'|'email'|'create_Update' | 'leave_id'> {}

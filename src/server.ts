@@ -12,5 +12,12 @@ app.use(cookieParser());
 app.use('/api/v1', authRouter);
 
 app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+    console.log(`✅ Server is running on http://localhost:${PORT}`);
+}).on("error", (err) => {
+    if (err.message === "EADDRINUSE") {
+        console.error(`❌ Port ${PORT} is already in use.`);
+    } else {
+        console.error("❌ Server error:", err);
+    }
 });
+

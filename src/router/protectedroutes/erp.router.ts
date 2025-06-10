@@ -7,6 +7,8 @@ import TravelExternalController from "../../modules/ERP/controllers/travels/exte
 import TrainingQueryExternalRepository from "../../modules/ERP/controllers/training/training.query.controller"
 import TrainingExternalController from "../../modules/ERP/controllers/training/training.controller"
 import SalaryAdvanceExternalController from "../../modules/ERP/controllers/salaryadvance/external/salary.external.controller";
+import LeaveEncashmentController from "../../modules/ERP/controllers/leaves/external/leave.encashment.controller";
+import TrainingClaimController from "../../modules/ERP/controllers/training/training.claim.controller"
 const router = Router();
 
 router.post("/permission",hasPermission("approve-leave"),RolePermissionController.finalRolePermission.bind(RolePermissionController));
@@ -36,6 +38,14 @@ router.post('/fetchTrainingByCode', TrainingQueryExternalRepository.fetchTrainin
 router.post('/fetchAdvancedetail', SalaryAdvanceExternalController.fetchSalaryAdvancedetail.bind(SalaryAdvanceExternalController))
 router.post('/applySalaryAdvance',SalaryAdvanceExternalController.applySalaryAdvance.bind(SalaryAdvanceExternalController))
 router.post('/fetchSalaryAdvance', SalaryAdvanceExternalController.fetchSalaryAdvance.bind(SalaryAdvanceExternalController)) //   by particular role head/ admin/ceo
+router.post('/approveSalaryAdvance', SalaryAdvanceExternalController.approveSalaryAdvance.bind(SalaryAdvanceExternalController)) // approve by head/admin/ceo
 
 
+router.post('/fetchLeaveEncashment', LeaveEncashmentController.fetchLeaveEncashment.bind(LeaveEncashmentController)) // fetch leave encashment by employee code
+router.post('/applyLeaveEncashment', LeaveEncashmentController.applyLeaveEncashment.bind(LeaveEncashmentController)) // apply leave encashment by employee code
+router.post('/fetchApprovalLeaveEncashment', LeaveEncashmentController.fetchApprovalLeaveEncashment.bind(LeaveEncashmentController)) // fetch approval leave encashment by admin/ceo
+router.post('/leaveEncashmentApprove', LeaveEncashmentController.leaveEncashmentApprove.bind(LeaveEncashmentController)) // approve leave encashment by admin/ceo
+
+// claims
+router.post('/fetchTrainingClaimApproval', TrainingClaimController.fetchTrainingClaimApproval.bind(TrainingClaimController))
 export default router;

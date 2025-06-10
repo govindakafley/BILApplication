@@ -13,6 +13,7 @@ class SalaryAdvanceExternalRepository {
     }
 
     static async applySalaryAdvance(payload:SalaryAdvanceAttributes ): Promise<SalaryResponseAttributes>{
+        
         return RequestHandler.post<SalaryResponseAttributes,SalaryAdvanceAttributes >(
             ERPAPI.applySalaryAdvance,
             payload

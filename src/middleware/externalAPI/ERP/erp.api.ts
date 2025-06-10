@@ -32,4 +32,14 @@ export const ERPAPI = {
   applySalaryAdvance: `${BASEERPAPIUIRL}/salary-advance`,
   listSalaryAdvance: `${BASEERPAPIUIRL}/list-salary-advance`,
   salaryAdvanceApproval: `${BASEERPAPIUIRL}/verify-salary-advance`,
+
+
+  // leave encashment
+  fetchLeaveEncashment: `${BASEERPAPIUIRL}/leave-encash`,
+  applyLeaveEncashment: `${BASEERPAPIUIRL}/apply-leave-encash`,
+  leaveEncashmentApproval: `${BASEERPAPIUIRL}/leave-encash-reporting`, //by ADM
+  leaveEncashmentApproved: `${BASEERPAPIUIRL}/leave-encash-approval`, //approved
+
+  // claims
+  fetchTrainingClaimApproval: `${BASEERPAPIUIRL}/training/expense-claim-approval`
 };

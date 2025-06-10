@@ -16,21 +16,15 @@ export class AuthHandler {
 
             // Start the login process in parallel to avoid blocking
             const loginResponse = this.authService.createLogin(LoginAttributes);
-
+            
             // Wait for the login response asynchronously
             const response = await loginResponse;
 
             if (response && response.status === 200) {
                 // If login is successful, execute further processing, like fetching user details
-                const userExecution = this.authService.execute(response.data as unknown as UserCreationAttributes);
-
-                // Start token generation concurrently
-                const token = await Promise.all([userExecution]).then(async (userData) => {
-                    const token = await ACCESS_TOKEN(userData[0]);
-                    return token;
-                });
-
+                const token = await ACCESS_TOKEN(response.data as unknown as UserCreationAttributes);
                 return token;
+               
             } else {
                 // Handle the case where the response isn't successful (status !== 200)
                 return undefined;

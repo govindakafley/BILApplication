@@ -16,38 +16,13 @@ class SalaryAdvanceExternalHandler extends SalaryAdvanceExternalRepository {
         employee_code: payload.employee_code,
         sa_advance_amt: payload.salary_advance_amt,
         sa_purpose: payload.salary_purpose,
-        gross_salary: payload.gross_salary,
-        applicable_advance_amt: payload.applicable_advance_amt,
-        monthly_installment_amt: payload.monthly_installment_amt,
       };
-
-      const externalResponse =
-        await SalaryAdvanceExternalRepository.applySalaryAdvance(externalData);
-      if (!externalResponse) {
-        return {
-          status: 400,
-          message: "Failed to apply salary advance externally.",
-          data: [],
-        };
-      }
-       
-      // const parsedResponse = JSON.stringify(externalResponse);
-      // const salaryAdvanceData = {
-      //   ...payload,
-      //   advance_id: JSON.parse(parsedResponse),
-      //   create_update: "create",
-      // };
-
-      // const systemData = await SalaryAdvanceSystemRepository.applySalaryAdvance(
-      //   salaryAdvanceData
-      // );
-
+      const externalResponse = await SalaryAdvanceExternalRepository.applySalaryAdvance(externalData);
+     
       return {
-        status: 201,
+        status: 200,
         message: "Applied the salary advance successfully.",
-        data: Array.isArray(externalResponse)
-          ? externalResponse as SalaryAdvanceAttributes[]
-          : [externalResponse as unknown as SalaryAdvanceAttributes],
+        data: externalResponse && (externalResponse as any).employee_code
       };
     } catch (error) {
       throw errorHandler(error);
@@ -59,59 +34,18 @@ class SalaryAdvanceExternalHandler extends SalaryAdvanceExternalRepository {
     try {
         const payloadData: SalaryAdvanceAttributes = {
             employee_code: payload.employee_code,
-            salary_advance_amt: payload.salary_advance_amt,
-            salary_purpose: payload.salary_purpose,
-            gross_salary: payload.gross_salary,
-            applicable_advance_amt: payload.applicable_advance_amt,
-            monthly_installment_amt: payload.monthly_installment_amt,
+            sa_monthly_installment: payload.sa_monthly_installment,
+            sa_request_advance_amt: payload.sa_request_advance_amt,
             approval_remarks: payload.approval_remarks,
-            sa_id: payload.advance_id,
             sa_status: payload.sa_status,
+            sa_id: payload.sa_id,
         };
-      const response: SalaryResponseAttributes =
-        await SalaryAdvanceExternalRepository.approveSalaryAdvance(payloadData);
-      if (!response) {
-        return {
-          status: 400,
-          message: "Failed to approve salary advance externally.",
-          data: [],
-        };
-      }
+      const response: SalaryResponseAttributes =  await SalaryAdvanceExternalRepository.approveSalaryAdvance(payloadData);
       return {
         status: 200,
         message: "Approved the salary advance successfully.",
-        data: response && (response as any).employee_code
-          ? [response as unknown as SalaryAdvanceAttributes]
-          : Array.isArray(response)
-            ? (response as SalaryAdvanceAttributes[])
-            : [],
+        data: response && (response as any).employee_code,
       };
-
-      // const checkSalaryAdvance =
-      //   await SalaryAdvanceSystemRepository.fetchsalaryAdvanceById(
-      //     payload.advance_id
-      //   );
-        
-      // const responseData = {
-      //   ...payload,
-      //   create_update: "Approved",
-      // }
-      // if (checkSalaryAdvance) {
-      //   await SalaryAdvanceSystemRepository.updateSalaryAdvance(responseData);
-      //   return {
-      //     status: 200,
-      //     message: "Updated the salary advance successfully.",
-      //     data: [checkSalaryAdvance],
-      //   };
-      // } else {
-      //   const systemData =
-      //     await SalaryAdvanceSystemRepository.applySalaryAdvance(responseData);
-      //   return {
-      //     status: 201,
-      //     message: "Created the salary advance successfully.",
-      //     data: systemData ? [systemData] : [],
-      //   };
-      // }
     } catch (error) {
       throw errorHandler(error);
     }

@@ -34,4 +34,20 @@ export type TrainingAttributes = {
     training_status: number
     approval_remarks: string
   }
+
+  export type TrainingBillClaim = {
+  training_bil_id: number;
+  emp_employee_number: string;
+  emp_full_name: string;
+  branch_name: string;
+  training_bill_balance_claim_amount: string; // or number, if parsed
+  training_bill_claim_date: string; // could be Date if parsed
+  status_name: string;
+};
+export type TrainingBillClaimResponse = {
+  status: number;
+  message: string;
+  data: TrainingBillClaim[];
+};
+
   

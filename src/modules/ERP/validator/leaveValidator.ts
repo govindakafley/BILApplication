@@ -57,4 +57,37 @@ export const updateleaveSchema = yup.object({
     .strict(true) // Disables type coercion
     .required('Approval Remarks is required'),
 })
-  ;
+  
+
+
+export const LeaveBalanceSchema = yup.object({
+  employee_id: yup
+    .string()
+    .required("Employee ID is required"),
+
+  employee_name: yup
+    .string()
+    .required("Employee name is required"),
+
+  basic_pay: yup
+    .string()
+    .required("Basic pay is required"),
+
+  financial_year: yup
+    .string()
+    .matches(/^\d{4}$/, "Financial year must be a 4-digit year")
+    .required("Financial year is required"),
+
+  casual_leave_balance: yup
+    .string()
+    .required("Casual leave balance is required"),
+
+  earned_leave_balance: yup
+    .string()
+    .required("Earned leave balance is required"),
+
+  total_leave_balance: yup
+    .number()
+    .min(0, "Total leave balance must be non-negative")
+    .required("Total leave balance is required"),
+});

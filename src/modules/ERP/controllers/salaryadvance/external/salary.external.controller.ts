@@ -21,6 +21,12 @@ class SalaryAdvanceExternalController{
         'Fetch Salary Advance Successfully'
         )
     }
+    async approveSalaryAdvance(req:Request, res: Response, next: NextFunction): Promise<void> {
+        return await ResponseHandler.handleRequest(res, ()=>
+            SalaryAdvanceExternalHandler.approveSalaryAdvance(req.body),
+        'Approved Salary Advance Successfully'
+        )
+    }   
 }
 
 export default new SalaryAdvanceExternalController()
