@@ -26,7 +26,7 @@ export class LeaveEncashmentHandler implements LeaveEncashmentExternalRepository
     }
     static async fetchApprovalLeaveEncashment(employee_code: EmployeeCodeAttributes): Promise<LeaveEncashmentResponse> {
         try {
-            await EmployeeCodeValidatorSchema.validate({ employee_code }, { abortEarly: true });
+            await EmployeeCodeValidatorSchema.validate( employee_code );
             const response = await LeaveEncashmentExternalRepository.fetchApprovalLeaveEncashment(employee_code);
             return response;
         } catch (error) {
