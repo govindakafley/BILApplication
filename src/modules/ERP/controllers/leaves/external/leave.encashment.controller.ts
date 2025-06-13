@@ -31,9 +31,9 @@ class LeaveEncashmentController {
     async fetchApprovalLeaveEncashment(req: Request, res: Response): Promise<any> {
         try {
             const response = await LeaveEncashmentHandler.fetchApprovalLeaveEncashment(req.body);
-            console.log(response)
             return ApiResponse.success(res, response.message, response.status, response.data);
         } catch (error: any) {
+            console.log(error)
             return ApiResponse.error(res, error instanceof Error ? error.message : "An unexpected error occurred", error.statusCode);
         }
     }
