@@ -30,7 +30,7 @@ export class LeaveEncashmentHandler implements LeaveEncashmentExternalRepository
             const response = await LeaveEncashmentExternalRepository.fetchApprovalLeaveEncashment(employee_code);
             return response;
         } catch (error) {
-            throw new Error(`Failed to fetch approval leave encashment: ${error}`);
+              throw errorHandler(error);
         }
     }
     static async approveLeaveEncashment(payload: LeaveApprovedAttributes): Promise<LeaveEncashmentResponse> {
