@@ -48,4 +48,5 @@ router.post('/leaveEncashmentApprove', LeaveEncashmentController.leaveEncashment
 
 // claims
 router.post('/fetchTrainingClaimApproval', TrainingClaimController.fetchTrainingClaimApproval.bind(TrainingClaimController))
+
 export default router;

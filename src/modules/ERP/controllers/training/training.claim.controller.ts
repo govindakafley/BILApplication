@@ -9,8 +9,7 @@ class TrainingClaimController {
     next: NextFunction
   ): Promise<any> {
     try {
-      const response =
-        await TrainingClaimExternalHandler.fetchApprovalTrainingApproval(
+      const response = await TrainingClaimExternalHandler.fetchApprovalTrainingApproval(
           req.body
         );
       return ApiResponse.success(

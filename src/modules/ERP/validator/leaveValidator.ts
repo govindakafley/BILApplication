@@ -59,12 +59,7 @@ export const updateleaveSchema = yup.object({
 })
   
 
-
 export const LeaveBalanceSchema = yup.object({
-  employee_id: yup
-    .string()
-    .required("Employee ID is required"),
-
   employee_name: yup
     .string()
     .required("Employee name is required"),

@@ -15,6 +15,9 @@ class SalaryAdvanceExternalHandler extends SalaryAdvanceExternalRepository {
       const externalData = {
         employee_code: payload.employee_code,
         sa_advance_amt: payload.salary_advance_amt,
+        sa_monthly_installment: payload.monthly_installment_amt,
+        sa_new_take_home: payload.take_home_salary,
+        sa_new_take_home_amt_percentage: payload.take_home_percentage,
         sa_purpose: payload.salary_purpose,
       };
       const externalResponse = await SalaryAdvanceExternalRepository.applySalaryAdvance(externalData);

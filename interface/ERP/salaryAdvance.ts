@@ -13,6 +13,8 @@ export type SalaryAdvanceAttributes = {
     approval_remarks?: string;
     sa_request_advance_amt?: number;
     sa_monthly_installment?: number;
+    take_home_salary?: number,
+    take_home_percentage?: number
 }
 
 export interface SalaryResponseAttributes {
