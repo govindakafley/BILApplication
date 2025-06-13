@@ -20,7 +20,7 @@ class LeaveEncashmentController {
     async applyLeaveEncashment(req: Request, res: Response): Promise<any> {
         try {
             const response = await LeaveEncashmentHandler.applyLeaveEncashment(req.body);
-            return ApiResponse.success(  res,
+            return ApiResponse.success( res,
                 response.message || "Successfully Applyed leave encashment",
                 response.status || 200,
                 response.data || response);
@@ -31,15 +31,16 @@ class LeaveEncashmentController {
     async fetchApprovalLeaveEncashment(req: Request, res: Response): Promise<any> {
         try {
             const response = await LeaveEncashmentHandler.fetchApprovalLeaveEncashment(req.body);
-            return ApiResponse.success(res, response.message, response.status || 200, response.data || response);
+            return ApiResponse.success(res, response.message || "Successfully Fetched leave encashment", response.status || 200, response.data || response);
         } catch (error: any) {
             return ApiResponse.error(res, error instanceof Error ? error.message : "An unexpected error occurred", error.statusCode || 500);
         }
     }
+
     async leaveEncashmentApprove(req: Request, res: Response): Promise<any> {
         try {
             const response = await LeaveEncashmentHandler.approveLeaveEncashment(req.body);
-            return ApiResponse.success(res, response.message, response.status, response.data);
+            return ApiResponse.success(res, response.message || "Successfully Approved leave encashment", response.status, response.data);
         } catch (error: any) {
             return ApiResponse.error(res, error instanceof Error ? error.message : "An unexpected error occurred", error.statusCode || 500);
         }

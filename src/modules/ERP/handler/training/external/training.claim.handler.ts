@@ -6,7 +6,6 @@ import TrainingClaimExternalRepository from "../../../repository/training/extern
 class TrainingClaimExternalHandler extends  TrainingClaimExternalRepository{
     async fetchApprovalTrainingApproval(employee_code: EmployeeCodeAttributes): Promise<TrainingBillClaimResponse> {
         try {
-            console.log('claim',employee_code)
             const response = await TrainingClaimExternalRepository.fetchTrainingBillClaim(employee_code);
             return response;
         }catch(error){

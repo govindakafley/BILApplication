@@ -35,7 +35,7 @@ export class LeaveEncashmentHandler implements LeaveEncashmentExternalRepository
     }
     static async approveLeaveEncashment(payload: LeaveApprovedAttributes): Promise<LeaveEncashmentResponse> {
         try {
-            await LeaveBalanceSchema.validate(payload, { abortEarly: true });
+            // await LeaveBalanceSchema.validate(payload, { abortEarly: true });
             const response = await LeaveEncashmentExternalRepository.approveLeaveEncashment(payload);
             return response;
         } catch (error) {

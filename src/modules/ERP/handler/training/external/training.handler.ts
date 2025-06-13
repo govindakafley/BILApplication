@@ -70,7 +70,6 @@ class TrainingExternalHandler {
       //  await TrainingSystemRepository.updateTraining(trainingData);
         return response;
     } catch (error) {
-      console.log(error);
       throw errorHandler(error);
     }
   }
