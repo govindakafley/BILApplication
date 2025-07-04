@@ -12,10 +12,10 @@ export class RequestHandler {
     }
   }
 
-  static async post<T, P>(url: string, payload: P): Promise<T> {
+  static async post<T, P>(url: string, payload: P): Promise<T | any> {
     try {
       const { data } = await apiClient.post<{ data: T }>(url, payload);
-      return data.data;
+      return data.data || data;
     } catch (error) {
       throw errorHandler(error);
     }

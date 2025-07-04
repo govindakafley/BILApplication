@@ -5,6 +5,7 @@ export type TravelAttributes = {
   travel_id?: string;
   employee_code: string;
   travel_type: number;
+  travel_status: number;
   travel_purpose: number;
   travel_expense_applicable: string; //Yes or No
   travel_funding: number;

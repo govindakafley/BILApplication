@@ -19,14 +19,6 @@ class TravelExternalHandler {
       await TravelValidatorSchema.validate(travelAttributes, { abortEarly: true });
 
       const response = await TravelExternalRepository.create(travelAttributes);
-      if (!response) return response;
-
-      // const travelData: TravelAttributes = {
-      //   ...travelAttributes,
-      //   travel_id: response as unknown as string,
-      //   create_Update: "create",
-      // };
-      // const travel = await TravelSystemRepository.createTravel(travelData);
 
       return {
         status: 201,
@@ -95,24 +87,14 @@ class TravelExternalHandler {
       const verificationPayload = {
         travel_id: travelAttributes.travel_id,
         employee_code: travelAttributes.employee_code,
-        travel_status: travelAttributes.travel_type,
+        travel_status: travelAttributes.travel_status,
         travel_remarks: travelAttributes.travel_description,
       };
+
       const response = await TravelExternalRepository.TravelVerification(
         verificationPayload,
         verificationPayload.travel_id
       );
-
-      if (!response) return response;
-
-      // const updatedTravel: TravelAttributes = {
-      //   ...travelAttributes,
-      //   travel_id: travelAttributes.travel_id,
-      //   create_Update: "Approved",
-      // };
-
-      // const travel = await TravelSystemRepository.updateTravel(updatedTravel.travel_id, updatedTravel);
-
       return {
         status: 200,
         message: "Travel updated successfully",

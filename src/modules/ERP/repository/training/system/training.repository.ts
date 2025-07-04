@@ -10,7 +10,6 @@ class TrainingSystemRepository {
       const response = await Training.create(trainingData);
       return response;
     } catch (error) {
-        console.log()
       throw errorHandler(error);
     }
   }
