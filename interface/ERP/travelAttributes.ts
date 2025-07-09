@@ -42,5 +42,19 @@ export type TravelVerifyAttributes = {
   travel_status: number;
   travel_remarks: string;
 };
+
+export type TravelClaimResponse = {
+  status: number;
+  message: string;
+  data: {};
+};
+
+export type TravelClaimApprove = {
+  employee_code: string;
+  travel_bill_id: string;
+  travel_bill_status: number;
+  travel_bill_remarks: string;
+};
+    
 export interface TravelCreationAttributes
   extends Optional<TravelAttributes, "id" | "travel_id"> {}

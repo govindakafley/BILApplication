@@ -3,7 +3,7 @@ import TravelExternalHandler from "../../../handler/travels/external/travel.hand
 import ResponseHandler from "../../../../../middleware/response.handler";
 
 class TravelExternalController {
-  async createTravel(req: Request, res: Response, next: NextFunction): Promise<void> {
+ static async createTravel(req: Request, res: Response, next: NextFunction): Promise<void> {
    return await ResponseHandler.handleRequest(
       res,
       () => TravelExternalHandler.createTravel(req.body),
@@ -12,7 +12,7 @@ class TravelExternalController {
     );
   }
 
-  async fetchTravelTypes(req: Request, res: Response, next: NextFunction): Promise<void> {
+  static async fetchTravelTypes(req: Request, res: Response, next: NextFunction): Promise<void> {
    return await ResponseHandler.handleRequest(
       res,
       () => TravelExternalHandler.fetchTravelTypes(),
@@ -21,7 +21,7 @@ class TravelExternalController {
     );
   }
 
-  async fetchTravelApplicant(req: Request, res: Response, next: NextFunction): Promise<void> {
+ static async fetchTravelApplicant(req: Request, res: Response, next: NextFunction): Promise<void> {
    return await ResponseHandler.handleRequest(
       res,
       () => TravelExternalHandler.fetchTravelApplicant(req.body),
@@ -29,14 +29,14 @@ class TravelExternalController {
     );
   }
 
-  async travelVerification(req: Request, res: Response, next: NextFunction): Promise<void> {
+ static async travelVerification(req: Request, res: Response, next: NextFunction): Promise<void> {
    return await ResponseHandler.handleRequest(
       res,
       () => TravelExternalHandler.travelVerification(req.body),
       "Travel verified successfully"
     );
   }
-  async fetchTravelByHead(req: Request, res: Response, next: NextFunction): Promise<void> {
+ static  async fetchTravelByHead(req: Request, res: Response, next: NextFunction): Promise<void> {
     return await ResponseHandler.handleRequest(res, ()=> 
       TravelExternalHandler.fetchTravelByHead(req.body),
     "Travel applicant fetched successfully"
@@ -44,4 +44,4 @@ class TravelExternalController {
   }
 }
 
-export default new TravelExternalController();
+export default TravelExternalController;

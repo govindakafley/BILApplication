@@ -9,6 +9,7 @@ import TrainingExternalController from "../../modules/ERP/controllers/training/t
 import SalaryAdvanceExternalController from "../../modules/ERP/controllers/salaryadvance/external/salary.external.controller";
 import LeaveEncashmentController from "../../modules/ERP/controllers/leaves/external/leave.encashment.controller";
 import TrainingClaimController from "../../modules/ERP/controllers/training/training.claim.controller"
+import TravelClaimController from "../../modules/ERP/controllers/travels/external/travel.claim.controller";
 const router = Router();
 
 router.post("/permission",RolePermissionController.finalRolePermission.bind(RolePermissionController));
@@ -51,4 +52,7 @@ router.post('/fetchTrainingClaim', TrainingClaimController.fetchTrainingClaim.bi
 router.post('/fetchTrainingClaimApproval', TrainingClaimController.fetchTrainingClaimApproval.bind(TrainingClaimController))
 router.post('/approvedTrainingClaimExpenses', TrainingClaimController.approvedClaimExpenses.bind(TrainingClaimController)) // approve training claim by admin/ceo
 
+// travel claims
+router.post('/fetchTravelClaimApproval', TravelClaimController.fetchTravelClaim.bind(TravelClaimController)) // fetch travel claim by employee code
+router.post('/approvedTravelClaimExpenses', TravelClaimController.approvedClaimExpenses.bind(TravelClaimController)) // approve travel claim by admin/ceo
 export default router;

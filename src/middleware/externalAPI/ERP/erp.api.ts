@@ -40,9 +40,14 @@ export const ERPAPI = {
   leaveEncashmentApproval: `${BASEERPAPIUIRL}/leave-encash-reporting`, //by ADM
   leaveEncashmentApproved: `${BASEERPAPIUIRL}/leave-encash-approval`, //approved
 
-  // claims
+  // claims training
   fetchClaims: `${BASEERPAPIUIRL}/training/expense-claim`,
   fetchTrainingClaimApproval: `${BASEERPAPIUIRL}/training/expense-claim-approval`,
-  approvedClaimExpenses: `${BASEERPAPIUIRL}/training/expense-claim-approve`
+  approvedClaimExpenses: `${BASEERPAPIUIRL}/training/expense-claim-approve`,
 
+
+// claims travel
+  // fetchTravelClaim: `${BASEERPAPIUIRL}/travel/expense-claim`,
+  fetchTravelClaimApproval: `${BASEERPAPIUIRL}/travel/expense-claim-approval`,
+  approvedTravelClaimExpenses: `${BASEERPAPIUIRL}/travel/expense-claim-approve`
 };
