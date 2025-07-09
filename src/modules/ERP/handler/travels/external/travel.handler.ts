@@ -82,8 +82,8 @@ class TravelExternalHandler {
 
   async travelVerification(travelAttributes: TravelAttributes): Promise<TravelResponse> {
     try {
+      
       await TravelValidatorSchema.validate(travelAttributes, { abortEarly: true });
-
       const verificationPayload = {
         travel_id: travelAttributes.travel_id,
         employee_code: travelAttributes.employee_code,

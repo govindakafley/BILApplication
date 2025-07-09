@@ -11,10 +11,10 @@ import LeaveEncashmentController from "../../modules/ERP/controllers/leaves/exte
 import TrainingClaimController from "../../modules/ERP/controllers/training/training.claim.controller"
 const router = Router();
 
-router.post("/permission",hasPermission("approve-leave"),RolePermissionController.finalRolePermission.bind(RolePermissionController));
+router.post("/permission",RolePermissionController.finalRolePermission.bind(RolePermissionController));
 router.post("/createleave", LeaveController.createLeave.bind(LeaveController));
 router.get("/leaveTypesQuery", LeaveQueryController.fetchLeaveTypes.bind(LeaveQueryController));
-router.post("/leaveQueryApproval",hasPermission("approve-leave"), LeaveQueryController.fetchAllLeaves.bind(LeaveQueryController));
+router.post("/leaveQueryApproval", LeaveQueryController.fetchAllLeaves.bind(LeaveQueryController));
 router.post("/leaveupdate", LeaveController.updateLeave.bind(LeaveController));
 router.post('/approvedLeave',LeaveController.approvedLeave.bind(LeaveController))
 
@@ -47,6 +47,8 @@ router.post('/fetchApprovalLeaveEncashment', LeaveEncashmentController.fetchAppr
 router.post('/leaveEncashmentApprove', LeaveEncashmentController.leaveEncashmentApprove.bind(LeaveEncashmentController)) // approve leave encashment by admin/ceo
 
 // claims
+router.post('/fetchTrainingClaim', TrainingClaimController.fetchTrainingClaim.bind(TrainingClaimController)) // fetch training claim by employee code
 router.post('/fetchTrainingClaimApproval', TrainingClaimController.fetchTrainingClaimApproval.bind(TrainingClaimController))
+router.post('/approvedClaimExpenses', TrainingClaimController.approvedClaimExpenses.bind(TrainingClaimController)) // approve training claim by admin/ceo
 
 export default router;

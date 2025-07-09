@@ -50,4 +50,11 @@ export type TrainingBillClaimResponse = {
   data: TrainingBillClaim[];
 };
 
+export type TrainingBillClaimApprove = {
+  employee_code: string;
+  training_bil_id: number;
+  training_bil_remarks: string;
+  status: number; // Assuming status is a number, could be an enum or string based on your application logic
+}
+
   

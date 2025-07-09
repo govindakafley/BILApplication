@@ -12,6 +12,17 @@ export class AuthController {
         try {
             const loginAttribute: loginAttributes = req.body;
             const response: TokenResponse | undefined = await this.authHandler.createLogin(loginAttribute);
+            res.cookie(
+                'accessToken',
+                response?.accessToken,
+                { httpOnly: true, secure: true, sameSite: "strict", maxAge: 3600 * 1000 }
+            );
+            
+            res.cookie(
+                'refreshToken',
+                response?.refreshToken,
+                { httpOnly: true, secure: true, sameSite: "strict", maxAge: 86400 * 1000 }
+            );
 
             if (response) {
                 return ApiResponse.success(res, 'Login successful',200, { 

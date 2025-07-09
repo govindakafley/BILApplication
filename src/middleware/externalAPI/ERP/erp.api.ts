@@ -41,5 +41,8 @@ export const ERPAPI = {
   leaveEncashmentApproved: `${BASEERPAPIUIRL}/leave-encash-approval`, //approved
 
   // claims
-  fetchTrainingClaimApproval: `${BASEERPAPIUIRL}/training/expense-claim-approval`
+  fetchClaims: `${BASEERPAPIUIRL}/training/expense-claim`,
+  fetchTrainingClaimApproval: `${BASEERPAPIUIRL}/training/expense-claim-approval`,
+  approvedClaimExpenses: `${BASEERPAPIUIRL}/training/expense-claim-approve`
+
 };
