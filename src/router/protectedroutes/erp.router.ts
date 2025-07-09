@@ -33,7 +33,7 @@ router.get('/fetchTrainingCountryFunding', TrainingQueryExternalRepository.fetch
 router.post('/createTraining', TrainingExternalController.createTraining.bind(TrainingExternalController))
 router.post('/traininglist',TrainingQueryExternalRepository.fetchAllTrainingList.bind(TrainingQueryExternalRepository))
 router.post('/trainingVerification', TrainingExternalController.TrainingVerification.bind(TrainingExternalController))
-router.post('/fetchTrainingByCode', TrainingQueryExternalRepository.fetchTrainingByEmployeeCode.bind(TrainingQueryExternalRepository))
+router.post('/fetchTrainingdetails', TrainingQueryExternalRepository.fetchTrainingByEmployeeCode.bind(TrainingQueryExternalRepository)) // head/ admin/ceo
 
 // advance salary
 router.post('/fetchAdvancedetail', SalaryAdvanceExternalController.fetchSalaryAdvancedetail.bind(SalaryAdvanceExternalController))
