@@ -11,7 +11,6 @@ const loginSchema = yup.object().shape({
     .string()
     .required('Password is required')
     .min(8, 'Password must be at least 8 characters')
-    .max(20, 'Password must be at most 20 characters'),
 });
 
 export default loginSchema;
