@@ -49,6 +49,6 @@ router.post('/leaveEncashmentApprove', LeaveEncashmentController.leaveEncashment
 // claims
 router.post('/fetchTrainingClaim', TrainingClaimController.fetchTrainingClaim.bind(TrainingClaimController)) // fetch training claim by employee code
 router.post('/fetchTrainingClaimApproval', TrainingClaimController.fetchTrainingClaimApproval.bind(TrainingClaimController))
-router.post('/approvedClaimExpenses', TrainingClaimController.approvedClaimExpenses.bind(TrainingClaimController)) // approve training claim by admin/ceo
+router.post('/approvedTrainingClaimExpenses', TrainingClaimController.approvedClaimExpenses.bind(TrainingClaimController)) // approve training claim by admin/ceo
 
 export default router;
