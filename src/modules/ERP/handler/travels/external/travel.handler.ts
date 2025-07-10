@@ -1,7 +1,8 @@
 import {
   EmployeeCodeAttributes,
   TravelAttributes,
-  TravelResponse
+  TravelResponse,
+  TravelVerifyAttributes
 } from "../../../../../../interface/ERP/travelAttributes";
 import errorHandler from "../../../../../middleware/errorHandler/commonErrorHandler";
 import TravelExternalRepository from "../../../repository/travel/external/travel.repository";
@@ -98,6 +99,18 @@ class TravelExternalHandler {
       return {
         status: 200,
         message: "Travel updated successfully",
+        data: response,
+      };
+    } catch (error) {
+      throw errorHandler(error);
+    }
+  }
+  async travelApproved(payload:TravelVerifyAttributes, travel_id: number):Promise<TravelResponse> {
+    try {
+      const response = await TravelExternalRepository.travelApproved(payload, travel_id);
+      return {
+        status: 200,
+        message: "Travel approved successfully",
         data: response,
       };
     } catch (error) {

@@ -30,6 +30,13 @@ import {
         );
     }
 
+    static TrainingApproved(payload:TrainingVerification ):Promise<TrainingResponse> {
+      return RequestHandler.post<TrainingResponse,TrainingVerification>(
+         `${ERPAPI.trainingApproved}/${payload.training_id}`, 
+            payload
+      ) 
+    }
+
   }
   
   export default TrainingExternalRepository;

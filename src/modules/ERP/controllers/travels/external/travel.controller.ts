@@ -42,6 +42,17 @@ class TravelExternalController {
     "Travel applicant fetched successfully"
     )
   }
+  static async travelApproved(req: Request, res: Response, next: NextFunction): Promise<void> {
+    const travelId = req.body.travel_id;
+    if (!travelId) {
+      throw new Error("Travel ID is required for approval.");
+    }
+    return await ResponseHandler.handleRequest(
+        res,
+        () => TravelExternalHandler.travelApproved(req.body, travelId),
+        "Travel approved successfully"
+      );
+    }
 }
 
 export default TravelExternalController;

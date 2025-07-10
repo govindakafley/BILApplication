@@ -22,5 +22,8 @@ class TravelExternalRepository {
         return await RequestHandler.post<TravelResponse, EmployeeCodeAttributes>(ERPAPI.travelQueryVerify, employee_code)
 
     }
+    static async travelApproved(travelAttributes: TravelVerifyAttributes, travel_id: number): Promise<TravelResponse> {
+        return await RequestHandler.post<TravelResponse, TravelVerifyAttributes>(`${ERPAPI.travelApproved}/${travel_id}`, travelAttributes)
+    }
 }
 export default TravelExternalRepository;

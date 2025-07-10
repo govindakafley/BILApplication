@@ -15,7 +15,7 @@ export const ERPAPI = {
   // updateTravel: `${BASEERPAPIUIRL}/update-travel`,
   travelQueryVerify: `${BASEERPAPIUIRL}/travel-reporting`, // list for admin/ ceo
   travelVerification: `${BASEERPAPIUIRL}/travel-verification`, // verified Head or Admin
-  // travelPendingVerification: `${BASEERPAPIUIRL}/travel-approval`, // approve ceo
+  travelApproved: `${BASEERPAPIUIRL}/travel-approve`, // approve ceo
 
   // training
 
@@ -26,6 +26,7 @@ export const ERPAPI = {
   trainingList: `${BASEERPAPIUIRL}/training-list`,
   trainingReporting: `${BASEERPAPIUIRL}/training-reporting`,
   trainingVerification:  `${BASEERPAPIUIRL}/training-verification`,
+  trainingApproved:  `${BASEERPAPIUIRL}/training-approve`,
 
   // salary advance
   salaryAdvanceDetail:  `${BASEERPAPIUIRL}/salary-apply-details`,

@@ -25,6 +25,7 @@ router.get('/travelTypesQuery', TravelExternalController.fetchTravelTypes.bind(T
 router.post('/travelList', TravelExternalController.fetchTravelApplicant.bind(TravelExternalController))
 router.post('/travelVerification', TravelExternalController.travelVerification.bind(TravelExternalController))
 router.post('/travelApprovalList',TravelExternalController.fetchTravelByHead.bind(TravelExternalController))
+router.post('/approvedTravel', TravelExternalController.travelApproved.bind(TravelExternalController)) // approve by HRAD
 
 //  training
 router.get('/trainingType', TrainingQueryExternalRepository.trainingType.bind(TrainingQueryExternalRepository))
@@ -34,6 +35,7 @@ router.post('/createTraining', TrainingExternalController.createTraining.bind(Tr
 router.post('/traininglist',TrainingQueryExternalRepository.fetchAllTrainingList.bind(TrainingQueryExternalRepository))
 router.post('/trainingVerification', TrainingExternalController.TrainingVerification.bind(TrainingExternalController))
 router.post('/fetchTrainingdetails', TrainingQueryExternalRepository.fetchTrainingByEmployeeCode.bind(TrainingQueryExternalRepository)) // head/ admin/ceo
+router.post('/approvedTraining', TrainingExternalController.ApprovedTraining.bind(TrainingExternalController))
 
 // advance salary
 router.post('/fetchAdvancedetail', SalaryAdvanceExternalController.fetchSalaryAdvancedetail.bind(SalaryAdvanceExternalController))
