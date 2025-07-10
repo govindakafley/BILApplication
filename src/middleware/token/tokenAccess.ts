@@ -8,8 +8,8 @@ const INACTIVITY_TIMEOUT = 1000000 * 1000; // 10 seconds
 export const ACCESS_TOKEN = async (data: Partial<UserCreationAttributes>):Promise<TokenResponse>=>{
     const payload = {...data };
 
-    const accessToken =  await jwt.sign(payload, secretKey, { expiresIn: '1s' })
-    const refreshToken = jwt.sign(payload, secretKey, { expiresIn: '1s' });
+    const accessToken =  await jwt.sign(payload, secretKey, { expiresIn: '10000s' })
+    const refreshToken = jwt.sign(payload, secretKey, { expiresIn: '10000s' });
     return { accessToken, refreshToken };
 }
 
