@@ -7,7 +7,6 @@ import { RequestHandler } from "../../../../../middleware/request.handler";
 class TrainingClaimExternalRepository {
     static async fetchTrainingBillClaim(employee_code: EmployeeCodeAttributes) :Promise<TrainingBillClaimResponse> {
         try {
-
           const response = await RequestHandler.post<TrainingBillClaimResponse,EmployeeCodeAttributes>(
             ERPAPI.fetchTrainingClaimApproval,
             employee_code
@@ -19,6 +18,8 @@ class TrainingClaimExternalRepository {
     }
     static async fetchTrainingClaim(employee_code: EmployeeCodeAttributes): Promise<TrainingBillClaimResponse> {
         try {
+            console.log('bscvsbvdnbsvn');
+
            return await RequestHandler.post<TrainingBillClaimResponse, EmployeeCodeAttributes>(
                 ERPAPI.fetchClaims,
                 employee_code

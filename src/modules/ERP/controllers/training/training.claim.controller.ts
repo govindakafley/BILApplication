@@ -16,7 +16,7 @@ class TrainingClaimController {
         res,
         response.message || "Training claim fetched successfully",
         response.status || 200,
-        response.data || []
+        response || []
       );
     } catch (error) {
       return ApiResponse.error(
@@ -39,7 +39,7 @@ class TrainingClaimController {
         res,
         response.message || "Training claim fetched successfully",
         response.status || 200,
-        response.data || []
+        response || []
       );
     } catch (error) {
       return ApiResponse.error(

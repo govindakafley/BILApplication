@@ -9,6 +9,9 @@ export const ERPAPI = {
   leaveApproval: `${BASEERPAPIUIRL}/leave-approval`,
   leaveapplicant: `${BASEERPAPIUIRL}/leave-applicant-list`, // list for employee
   fetchAllEmployee: `${BASEERPAPIUIRL}/employee-list`, // list for All employee
+  fetchBranch: `${BASEERPAPIUIRL}/office`, // list for branch employee
+  fetchAllDepartment: `${BASEERPAPIUIRL}/department`, // list for branch employee
+  fetchAllSection: `${BASEERPAPIUIRL}/section`, // list for section employee
 
   // travel
   createTravel: `${BASEERPAPIUIRL}/create-travel`,

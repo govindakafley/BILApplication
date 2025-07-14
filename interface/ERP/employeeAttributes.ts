@@ -9,3 +9,11 @@ export type EmployeeAttributes = {
     joining_date: string;
     status: string;
 }
+export type BranchAttributes = {
+    id: number;
+    name: string;
+}
+export type BranchResponse = {
+    status: number;
+    message: string;
+    data: Array<BranchAttributes[]>;}

@@ -20,7 +20,13 @@ router.post("/leaveQueryApproval", LeaveQueryController.fetchAllLeaves.bind(Leav
 router.post("/leaveupdate", LeaveController.updateLeave.bind(LeaveController));
 router.post('/approvedLeave',LeaveController.approvedLeave.bind(LeaveController))
 router.post('/leaveapplicant', LeaveQueryController.leaveapplicant.bind(LeaveQueryController));
+
+// Employee detail and branches
 router.get('/fetchAllEmployee',  EmployeeController.fetchAllEmployees.bind(EmployeeController)); // fetch all employee for admin/ceo
+router.get('/branch', EmployeeController.fetchAllBranch.bind(EmployeeController)); // fetch all employee for admin/ceo
+router.post('/department', EmployeeController.fetchAllDepartments.bind(EmployeeController)); // fetch all employee for admin/ceo
+router.post('/section', EmployeeController.fetchAllSections.bind(EmployeeController)); // fetch all employee for admin/ceo
+
 // travel
 router.post('/createtravel', TravelExternalController.createTravel.bind(TravelExternalController))
 router.get('/travelTypesQuery', TravelExternalController.fetchTravelTypes.bind(TravelExternalController))
