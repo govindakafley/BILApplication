@@ -10,6 +10,7 @@ import SalaryAdvanceExternalController from "../../modules/ERP/controllers/salar
 import LeaveEncashmentController from "../../modules/ERP/controllers/leaves/external/leave.encashment.controller";
 import TrainingClaimController from "../../modules/ERP/controllers/training/training.claim.controller"
 import TravelClaimController from "../../modules/ERP/controllers/travels/external/travel.claim.controller";
+import EmployeeController from "../../modules/ERP/controllers/employee/employee.controller";
 const router = Router();
 
 router.post("/permission",RolePermissionController.finalRolePermission.bind(RolePermissionController));
@@ -19,6 +20,7 @@ router.post("/leaveQueryApproval", LeaveQueryController.fetchAllLeaves.bind(Leav
 router.post("/leaveupdate", LeaveController.updateLeave.bind(LeaveController));
 router.post('/approvedLeave',LeaveController.approvedLeave.bind(LeaveController))
 router.post('/leaveapplicant', LeaveQueryController.leaveapplicant.bind(LeaveQueryController));
+router.post('/fetchAllEmployee',  EmployeeController.fetchAllEmployees.bind(EmployeeController)); // fetch all employee for admin/ceo
 // travel
 router.post('/createtravel', TravelExternalController.createTravel.bind(TravelExternalController))
 router.get('/travelTypesQuery', TravelExternalController.fetchTravelTypes.bind(TravelExternalController))
