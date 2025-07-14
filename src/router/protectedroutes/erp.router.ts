@@ -18,7 +18,7 @@ router.get("/leaveTypesQuery", LeaveQueryController.fetchLeaveTypes.bind(LeaveQu
 router.post("/leaveQueryApproval", LeaveQueryController.fetchAllLeaves.bind(LeaveQueryController));
 router.post("/leaveupdate", LeaveController.updateLeave.bind(LeaveController));
 router.post('/approvedLeave',LeaveController.approvedLeave.bind(LeaveController))
-
+router.post('/leaveapplicant', LeaveQueryController.leaveapplicant.bind(LeaveQueryController));
 // travel
 router.post('/createtravel', TravelExternalController.createTravel.bind(TravelExternalController))
 router.get('/travelTypesQuery', TravelExternalController.fetchTravelTypes.bind(TravelExternalController))

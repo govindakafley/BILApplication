@@ -41,5 +41,18 @@ class LeaveQueryHandler implements LeaveQueryRepository, LeaveExternalRepository
       throw new DataBaseError(`${error}`);
     }
   }
+  async leaveapplicant(UserAttributes: Partial<UserCreationAttributes>): Promise<LeaveQueryResponse> {
+    try {
+      const cacheKey = 'leaveapplicant' + UserAttributes.employee_code;
+      if (this.cacheManager.has(cacheKey)) {
+        return this.cacheManager.get<LeaveQueryResponse>(cacheKey)!;
+      }
+      const response: LeaveQueryResponse = await LeaveQueryRepository.fetchAllLeaves(UserAttributes);
+      this.cacheManager.set(cacheKey, response);
+      return response;
+    } catch (error) {
+      throw new DataBaseError(`${error}`);
+    }
+  }
 } 
 export default new LeaveQueryHandler();

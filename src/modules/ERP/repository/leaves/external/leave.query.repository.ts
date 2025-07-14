@@ -3,6 +3,7 @@ import { LeaveQueryResponse } from "../../../../../../interface/ERP/leaveAttribu
 import  errorHandler  from "../../../../../middleware/errorHandler/commonErrorHandler";
 
 import { ERPAPI } from "../../../../../middleware/externalAPI/ERP/erp.api";
+import { RequestHandler } from "../../../../../middleware/request.handler";
 import apiClient from "../../../../../utility/api";
 export class LeaveQueryRepository{
 
@@ -17,6 +18,16 @@ export class LeaveQueryRepository{
       const data: LeaveQueryResponse = response.data as LeaveQueryResponse;
       return data
       
+    } catch (error) {
+      throw errorHandler(error);
+    }
+  }
+  static async fetchAllLeaves(UserAttributes: Partial<UserCreationAttributes>): Promise<LeaveQueryResponse> {
+    try {
+      return await RequestHandler.post<
+            LeaveQueryResponse,
+            Partial<UserCreationAttributes>
+          >(ERPAPI.leaveapplicant, UserAttributes);
     } catch (error) {
       throw errorHandler(error);
     }

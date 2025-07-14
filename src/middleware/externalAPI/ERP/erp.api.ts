@@ -7,7 +7,7 @@ export const ERPAPI = {
   leaveTypes: `${BASEERPAPIUIRL}/leave-type`,
   leaveQueryApproval: `${BASEERPAPIUIRL}/leave-applicant`,
   leaveApproval: `${BASEERPAPIUIRL}/leave-approval`,
-
+   leaveapplicant: `${BASEERPAPIUIRL}/leave-applicant-list`, // list for employee
   // travel
   createTravel: `${BASEERPAPIUIRL}/create-travel`,
   travelTypes: `${BASEERPAPIUIRL}/travel-master-data`,
