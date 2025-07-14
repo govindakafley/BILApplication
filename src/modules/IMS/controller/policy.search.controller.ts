@@ -29,12 +29,12 @@ class PolicySearchController {
             
         const policyDetail = req.body;
         const response = await PolicySearchHandler.claimSearch(policyDetail);
-        const {detail} = response.data
+       
         return ApiResponse.success(
             res,
             response.message || "Training claim fetched successfully",
             response.status || 200,
-            { data: detail }
+            response
         );
          
         } catch (error) {
