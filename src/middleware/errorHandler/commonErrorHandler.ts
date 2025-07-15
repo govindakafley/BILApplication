@@ -9,6 +9,7 @@ import {
 const errorHandler = (error: any) => {
   // Extract status and message from the response object (if it exists)
   const status = error.response?.status || error.status || error.statusCode || 500;
+
   const errorMessage = error.response?.data?.message || error.data?.message || error.message || "An unexpected error occurred";
   switch (status) {
     case 500:

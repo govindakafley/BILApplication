@@ -26,7 +26,7 @@ class TravelClaimExternalHandler {
       
       return await TravelClaimExternalRepository.approvedClaimExpenses(payload);
     } catch (error: any) {
-        throw errorHandler(error);
+        throw errorHandler(error || "Error approving claim expenses");
     }
   }
 }

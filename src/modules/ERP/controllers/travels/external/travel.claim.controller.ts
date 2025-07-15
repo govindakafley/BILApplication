@@ -17,7 +17,7 @@ class TravelClaimController {
     } catch (error: any) {
       return ApiResponse.error(
         res,
-        error || "Internal Server Error",
+        error.message || "Internal Server Error",
         500
       );
     }
@@ -36,7 +36,7 @@ class TravelClaimController {
     } catch (error: any) {
       return ApiResponse.error(
         res,
-        error || "Internal Server Error",
+        error.message || "Internal Server Error",
         500
      );
     }
