@@ -11,15 +11,13 @@ class TravelClaimController {
         res,
         response.message || "Travel claim fetched successfully",
         response.status || 200,
-        response.data || []
+        response || []
       );
     } catch (error: any) {
-      console.error("Error in fetchTravelClaim:", error.message || error);
       return ApiResponse.error(
         res,
         error || "Internal Server Error",
-        500,
-       
+        500
       );
     }
   }
@@ -32,7 +30,7 @@ class TravelClaimController {
         res,
         response.message || "Travel claim approved successfully",
         response.status || 200,
-        response.data || []
+        response || []
       );
     } catch (error: any) {
       return ApiResponse.error(

@@ -27,7 +27,7 @@ class EmployeeRepository {
         ERPAPI.fetchAllSection,
         section
         );
-        return response.data;
+        return response;
     }
 }
 
