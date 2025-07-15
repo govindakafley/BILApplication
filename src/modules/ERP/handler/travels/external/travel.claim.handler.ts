@@ -5,6 +5,7 @@ import {
 } from "../../../../../../interface/ERP/travelAttributes";
 import errorHandler from "../../../../../middleware/errorHandler/commonErrorHandler";
 import TravelClaimExternalRepository from "../../../repository/travel/external/travel.claim.repository";
+import { TravelValidatorApprovedSchema } from "../../../validator/travelValidator";
 
 class TravelClaimExternalHandler {
    async handleFetchTravelClaim(
@@ -21,6 +22,8 @@ class TravelClaimExternalHandler {
     payload: TravelClaimApprove
   ): Promise<TravelClaimResponse> {
     try {
+      await TravelValidatorApprovedSchema.validate(payload, { abortEarly: true });
+      
       return await TravelClaimExternalRepository.approvedClaimExpenses(payload);
     } catch (error: any) {
         throw errorHandler(error);

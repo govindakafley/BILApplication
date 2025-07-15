@@ -86,3 +86,23 @@ export const TravelValidatorSchema = yup.object({
     .required('Travel description is required'),
 });
 
+export const TravelValidatorApprovedSchema = yup.object({
+  employee_code: yup
+    .string()
+    .strict(true)
+    .required('Employee code is required'),
+  travel_bill_id: yup
+    .string()
+    .strict(true)
+    .required('Travel bill ID is required'),
+  travel_bill_status: yup
+    .number() 
+    .strict(true)
+    .integer()
+    .required('Travel bill status is required'),
+  travel_bill_remarks: yup
+    .string()
+    .strict(true)
+    .required('Travel bill remarks are required'),
+})
+

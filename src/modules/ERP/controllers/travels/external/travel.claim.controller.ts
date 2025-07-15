@@ -7,6 +7,7 @@ class TravelClaimController {
     try {
       const employee_code = req.body;
       const response = await TravelClaimExternalHandler.handleFetchTravelClaim(employee_code);
+      console.log("Response from TravelClaimController:", response);
       return ApiResponse.success(
         res,
         response.message || "Travel claim fetched successfully",
